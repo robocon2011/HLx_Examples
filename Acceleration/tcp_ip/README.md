@@ -17,7 +17,7 @@ This readme file contains these sections:
 
 1. OVERVIEW
 
-This is readme file provides a basic explanation of the file structure in $the TCP Offload Engine repository, including instructions on how to compile, synthesize and test the HLS part of the design as well as how to integrate it with the provided RTL infrastructure and test it on the Xilinx VC709 development board. The TCP Offload engine repo includes:
+This readme file provides a basic explanation of the file structure in the TCP Offload Engine repository, including instructions on how to compile, synthesize and test the HLS part of the design as well as how to integrate it with the provided RTL infrastructure and test it on the ADM-PCIE-7V3 board. The TCP Offload engine repository includes:
 
 - Vivado HLS projects of the TCP Offload engine itself along with any peripheral modules necessary for it to operate.
 - A simple test client which can be executed on any linux-based system to open sessions on the FPGA.
@@ -100,3 +100,4 @@ more information about David Sidler can be found at http://davidsidler.ch and ht
 Date		|	Readme Version		|	Revision Description
 ------------|-----------------------|-------------------------
 Aug2016		|	1.0					|	Initial Xilinx release
+Oct2016		| 1.1					| Corrected board information
