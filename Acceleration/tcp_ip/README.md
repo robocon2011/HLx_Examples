@@ -101,3 +101,4 @@ Date		|	Readme Version		|	Revision Description
 ------------|-----------------------|-------------------------
 Aug2016		|	1.0					|	Initial Xilinx release
 Oct2016		| 1.1					| Corrected board information
+Oct2016		| 1.2					| Added tcl script to creat dual channel mig for VC709 board
