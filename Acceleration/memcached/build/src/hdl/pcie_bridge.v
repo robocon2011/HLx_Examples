@@ -119,7 +119,7 @@ GND GND(.G(GND_1));
          );  
         
         
-pcie2axilite_sub_pcie3_7x_0_1 pcie3_7x_0
+pcie2axilite_sub_pcie3_7x_0 pcie3_7x_0
        (.cfg_interrupt_int({GND_1,GND_1,GND_1,GND_1}),
         .cfg_interrupt_msi_attr({GND_1,GND_1,GND_1}),
         .cfg_interrupt_msi_function_number({GND_1,GND_1,GND_1}),
@@ -159,7 +159,7 @@ pcie2axilite_sub_pcie3_7x_0_1 pcie3_7x_0
         .user_lnk_up(pcie3_7x_0_user_lnk_up));
         
         
-pcie2axilite_sub_pcie_2_axilite_0_0 pcie_2_axilite_0
+pcie2axilite_sub_pcie_2_axilite_0 pcie_2_axilite_0
        (.axi_aresetn(pcie3_7x_0_user_lnk_up),
         .axi_clk(pcie3_7x_0_user_clk),
         .m_axi_araddr(pcie_axi_ARADDR),

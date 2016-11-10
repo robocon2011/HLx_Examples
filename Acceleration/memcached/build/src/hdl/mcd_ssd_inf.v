@@ -171,7 +171,7 @@ always @(posedge clk)
         endcase
         
 wire [11:0] rdDataFIFO_count;
-flashRdData_FIFO your_instance_name (
+flashRdData_FIFO flashRdData_FIFO_inst (
   .s_aclk(clk),                // input wire s_aclk
   .s_aresetn(nReset),          // input wire s_aresetn
   .s_axis_tvalid(ssd_dramRdData_valid),  // input wire s_axis_tvalid

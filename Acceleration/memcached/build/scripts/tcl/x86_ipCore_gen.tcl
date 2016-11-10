@@ -1,2672 +1,343 @@
-set module_name {cmd_fifo_xgemac_rxif}
-create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name FIS_OUT_FIFO
 set_property -dict [list \
-CONFIG.ADDRESS_WIDTH{32} \
-CONFIG.ARUSER_Width{0} \
-CONFIG.AWUSER_Width{0} \
-CONFIG.Add_NGC_Constraint_AXI{false} \
-CONFIG.Almost_Empty_Flag{false} \
-CONFIG.Almost_Full_Flag{false} \
-CONFIG.BUSER_Width{0} \
-CONFIG.Clock_Enable_Type{Slave_Interface_Clock_Enable} \
-CONFIG.Clock_Type_AXI{Common_Clock} \
-CONFIG.Component_Name{cmd_fifo_xgemac_rxif} \
-CONFIG.DATA_WIDTH{64} \
-CONFIG.Data_Count{false} \
-CONFIG.Data_Count_Width{10} \
-CONFIG.Disable_Timing_Violations{false} \
-CONFIG.Disable_Timing_Violations_AXI{false} \
-CONFIG.Dout_Reset_Value{0} \
-CONFIG.Empty_Threshold_Assert_Value{2} \
-CONFIG.Empty_Threshold_Assert_Value_axis{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wrch{1022} \
-CONFIG.Empty_Threshold_Negate_Value{3} \
-CONFIG.Enable_Common_Overflow{false} \
-CONFIG.Enable_Common_Underflow{false} \
-CONFIG.Enable_Data_Counts_axis{false} \
-CONFIG.Enable_Data_Counts_rach{false} \
-CONFIG.Enable_Data_Counts_rdch{false} \
-CONFIG.Enable_Data_Counts_wach{false} \
-CONFIG.Enable_Data_Counts_wdch{false} \
-CONFIG.Enable_Data_Counts_wrch{false} \
-CONFIG.Enable_ECC{false} \
-CONFIG.Enable_ECC_axis{false} \
-CONFIG.Enable_ECC_rach{false} \
-CONFIG.Enable_ECC_rdch{false} \
-CONFIG.Enable_ECC_wach{false} \
-CONFIG.Enable_ECC_wdch{false} \
-CONFIG.Enable_ECC_wrch{false} \
-CONFIG.Enable_Reset_Synchronization{true} \
-CONFIG.Enable_TLAST{false} \
-CONFIG.Enable_TREADY{true} \
-CONFIG.FIFO_Application_Type_axis{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wrch{Data_FIFO} \
-CONFIG.FIFO_Implementation_axis{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wrch{Common_Clock_Block_RAM} \
-CONFIG.Fifo_Implementation{Common_Clock_Block_RAM} \
-CONFIG.Full_Flags_Reset_Value{1} \
-CONFIG.Full_Threshold_Assert_Value{1022} \
-CONFIG.Full_Threshold_Assert_Value_axis{1023} \
-CONFIG.Full_Threshold_Assert_Value_rach{1023} \
-CONFIG.Full_Threshold_Assert_Value_rdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wach{1023} \
-CONFIG.Full_Threshold_Assert_Value_wdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wrch{1023} \
-CONFIG.Full_Threshold_Negate_Value{1021} \
-CONFIG.HAS_ACLKEN{false} \
-CONFIG.HAS_TKEEP{false} \
-CONFIG.HAS_TSTRB{false} \
-CONFIG.ID_WIDTH{0} \
-CONFIG.INTERFACE_TYPE{Native} \
-CONFIG.Inject_Dbit_Error{false} \
-CONFIG.Inject_Dbit_Error_axis{false} \
-CONFIG.Inject_Dbit_Error_rach{false} \
-CONFIG.Inject_Dbit_Error_rdch{false} \
-CONFIG.Inject_Dbit_Error_wach{false} \
-CONFIG.Inject_Dbit_Error_wdch{false} \
-CONFIG.Inject_Dbit_Error_wrch{false} \
-CONFIG.Inject_Sbit_Error{false} \
-CONFIG.Inject_Sbit_Error_axis{false} \
-CONFIG.Inject_Sbit_Error_rach{false} \
-CONFIG.Inject_Sbit_Error_rdch{false} \
-CONFIG.Inject_Sbit_Error_wach{false} \
-CONFIG.Inject_Sbit_Error_wdch{false} \
-CONFIG.Inject_Sbit_Error_wrch{false} \
-CONFIG.Input_Data_Width{16} \
-CONFIG.Input_Depth{1024} \
-CONFIG.Input_Depth_axis{1024} \
-CONFIG.Input_Depth_rach{16} \
-CONFIG.Input_Depth_rdch{1024} \
-CONFIG.Input_Depth_wach{16} \
-CONFIG.Input_Depth_wdch{1024} \
-CONFIG.Input_Depth_wrch{16} \
-CONFIG.Output_Data_Width{16} \
-CONFIG.Output_Depth{1024} \
-CONFIG.Overflow_Flag{false} \
-CONFIG.Overflow_Flag_AXI{false} \
-CONFIG.Overflow_Sense{Active_High} \
-CONFIG.Overflow_Sense_AXI{Active_High} \
-CONFIG.PROTOCOL{AXI4} \
-CONFIG.Performance_Options{Standard_FIFO} \
-CONFIG.Programmable_Empty_Type{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_axis{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wrch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Full_Type{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_axis{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wrch{No_Programmable_Full_Threshold} \
-CONFIG.READ_WRITE_MODE{READ_WRITE} \
-CONFIG.RUSER_Width{0} \
-CONFIG.Read_Clock_Frequency{1} \
-CONFIG.Read_Data_Count{false} \
-CONFIG.Read_Data_Count_Width{10} \
-CONFIG.Register_Slice_Mode_axis{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wrch{Fully_Registered} \
-CONFIG.Reset_Pin{true} \
-CONFIG.Reset_Type{Asynchronous_Reset} \
-CONFIG.TDATA_NUM_BYTES{0} \
-CONFIG.TDEST_WIDTH{0} \
-CONFIG.TID_WIDTH{0} \
-CONFIG.TKEEP_WIDTH{0} \
-CONFIG.TSTRB_WIDTH{0} \
-CONFIG.TUSER_WIDTH{4} \
-CONFIG.Underflow_Flag{false} \
-CONFIG.Underflow_Flag_AXI{false} \
-CONFIG.Underflow_Sense{Active_High} \
-CONFIG.Underflow_Sense_AXI{Active_High} \
-CONFIG.Use_Dout_Reset{true} \
-CONFIG.Use_Embedded_Registers{false} \
-CONFIG.Use_Embedded_Registers_axis{false} \
-CONFIG.Use_Extra_Logic{false} \
-CONFIG.Valid_Flag{false} \
-CONFIG.Valid_Sense{Active_High} \
-CONFIG.WUSER_Width{0} \
-CONFIG.Write_Acknowledge_Flag{false} \
-CONFIG.Write_Acknowledge_Sense{Active_High} \
-CONFIG.Write_Clock_Frequency{1} \
-CONFIG.Write_Data_Count{false} \
-CONFIG.Write_Data_Count_Width{10} \
-CONFIG.axis_type{FIFO} \
-CONFIG.enable_read_pointer_increment_by2{false} \
-CONFIG.rach_type{FIFO} \
-CONFIG.rdch_type{FIFO} \
-CONFIG.synchronization_stages{2} \
-CONFIG.synchronization_stages_axi{2} \
-CONFIG.wach_type{FIFO} \
-CONFIG.wdch_type{FIFO} \
-CONFIG.wrch_type{FIFO} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.Fifo_Implementation {Common_Clock_Distributed_RAM} \
+	CONFIG.Performance_Options {First_Word_Fall_Through} \
+	CONFIG.Input_Data_Width {32} \
+	CONFIG.Input_Depth {16} \
+	CONFIG.Output_Data_Width {32} \
+	CONFIG.Output_Depth {16} \
+	CONFIG.Reset_Type {Asynchronous_Reset} \
+	CONFIG.Full_Flags_Reset_Value {1} \
+	CONFIG.Use_Extra_Logic {true} \
+	CONFIG.Data_Count_Width {5} \
+	CONFIG.Write_Data_Count_Width {5} \
+	CONFIG.Read_Data_Count_Width {5} \
+	CONFIG.Full_Threshold_Assert_Value {15} \
+	CONFIG.Full_Threshold_Negate_Value {14} \
+	CONFIG.Empty_Threshold_Assert_Value {4} \
+	CONFIG.Empty_Threshold_Negate_Value {5} \
+	CONFIG.Programmable_Full_Type {Single_Programmable_Full_Threshold_Constant} \
+	CONFIG.Programmable_Empty_Type {Single_Programmable_Empty_Threshold_Constant} ] [get_ips FIS_OUT_FIFO]
+generate_target {instantiation_template} [get_files FIS_OUT_FIFO.xci]
 
-set module_name {axis_register_slice_64}
-create_ip -name axis_register_slice -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name FIS_IN_FIFO
 set_property -dict [list \
-CONFIG.Component_Name{axis_register_slice_64} \
-CONFIG.HAS_ACLKEN{0} \
-CONFIG.HAS_TKEEP{1} \
-CONFIG.HAS_TLAST{1} \
-CONFIG.HAS_TREADY{1} \
-CONFIG.HAS_TSTRB{0} \
-CONFIG.REG_CONFIG{1} \
-CONFIG.TDATA_NUM_BYTES{8} \
-CONFIG.TDEST_WIDTH{0} \
-CONFIG.TID_WIDTH{0} \
-CONFIG.TUSER_WIDTH{0} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.Fifo_Implementation {Common_Clock_Distributed_RAM} \
+	CONFIG.Performance_Options {First_Word_Fall_Through} \
+	CONFIG.Input_Data_Width {32} \
+	CONFIG.Input_Depth {64} \
+	CONFIG.Output_Data_Width {32} \
+	CONFIG.Output_Depth {64} \
+	CONFIG.Reset_Type {Asynchronous_Reset} \
+	CONFIG.Full_Flags_Reset_Value {1} \
+	CONFIG.Use_Extra_Logic {true} \
+	CONFIG.Data_Count_Width {7} \
+	CONFIG.Write_Data_Count_Width {7} \
+	CONFIG.Read_Data_Count_Width {7} \
+	CONFIG.Full_Threshold_Assert_Value {63} \
+	CONFIG.Full_Threshold_Negate_Value {62} \
+	CONFIG.Empty_Threshold_Assert_Value {4} \
+	CONFIG.Empty_Threshold_Negate_Value {5} \
+	CONFIG.Programmable_Full_Type {Single_Programmable_Full_Threshold_Constant}] [get_ips FIS_IN_FIFO]
+generate_target {instantiation_template} [get_files FIS_IN_FIFO.xci]
 
-set module_name {memMgmt_async_fifo}
-create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name flashRdData_FIFO
 set_property -dict [list \
-CONFIG.ADDRESS_WIDTH{32} \
-CONFIG.ARUSER_Width{0} \
-CONFIG.AWUSER_Width{0} \
-CONFIG.Add_NGC_Constraint_AXI{false} \
-CONFIG.Almost_Empty_Flag{false} \
-CONFIG.Almost_Full_Flag{false} \
-CONFIG.BUSER_Width{0} \
-CONFIG.Clock_Enable_Type{Slave_Interface_Clock_Enable} \
-CONFIG.Clock_Type_AXI{Common_Clock} \
-CONFIG.Component_Name{memMgmt_async_fifo} \
-CONFIG.DATA_WIDTH{64} \
-CONFIG.Data_Count{false} \
-CONFIG.Data_Count_Width{4} \
-CONFIG.Disable_Timing_Violations{false} \
-CONFIG.Disable_Timing_Violations_AXI{false} \
-CONFIG.Dout_Reset_Value{0} \
-CONFIG.Empty_Threshold_Assert_Value{4} \
-CONFIG.Empty_Threshold_Assert_Value_axis{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wrch{1022} \
-CONFIG.Empty_Threshold_Negate_Value{5} \
-CONFIG.Enable_Common_Overflow{false} \
-CONFIG.Enable_Common_Underflow{false} \
-CONFIG.Enable_Data_Counts_axis{false} \
-CONFIG.Enable_Data_Counts_rach{false} \
-CONFIG.Enable_Data_Counts_rdch{false} \
-CONFIG.Enable_Data_Counts_wach{false} \
-CONFIG.Enable_Data_Counts_wdch{false} \
-CONFIG.Enable_Data_Counts_wrch{false} \
-CONFIG.Enable_ECC{false} \
-CONFIG.Enable_ECC_axis{false} \
-CONFIG.Enable_ECC_rach{false} \
-CONFIG.Enable_ECC_rdch{false} \
-CONFIG.Enable_ECC_wach{false} \
-CONFIG.Enable_ECC_wdch{false} \
-CONFIG.Enable_ECC_wrch{false} \
-CONFIG.Enable_Reset_Synchronization{true} \
-CONFIG.Enable_TLAST{false} \
-CONFIG.Enable_TREADY{true} \
-CONFIG.FIFO_Application_Type_axis{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wrch{Data_FIFO} \
-CONFIG.FIFO_Implementation_axis{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wrch{Common_Clock_Block_RAM} \
-CONFIG.Fifo_Implementation{Independent_Clocks_Block_RAM} \
-CONFIG.Full_Flags_Reset_Value{1} \
-CONFIG.Full_Threshold_Assert_Value{15} \
-CONFIG.Full_Threshold_Assert_Value_axis{1023} \
-CONFIG.Full_Threshold_Assert_Value_rach{1023} \
-CONFIG.Full_Threshold_Assert_Value_rdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wach{1023} \
-CONFIG.Full_Threshold_Assert_Value_wdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wrch{1023} \
-CONFIG.Full_Threshold_Negate_Value{14} \
-CONFIG.HAS_ACLKEN{false} \
-CONFIG.HAS_TKEEP{false} \
-CONFIG.HAS_TSTRB{false} \
-CONFIG.ID_WIDTH{0} \
-CONFIG.INTERFACE_TYPE{Native} \
-CONFIG.Inject_Dbit_Error{false} \
-CONFIG.Inject_Dbit_Error_axis{false} \
-CONFIG.Inject_Dbit_Error_rach{false} \
-CONFIG.Inject_Dbit_Error_rdch{false} \
-CONFIG.Inject_Dbit_Error_wach{false} \
-CONFIG.Inject_Dbit_Error_wdch{false} \
-CONFIG.Inject_Dbit_Error_wrch{false} \
-CONFIG.Inject_Sbit_Error{false} \
-CONFIG.Inject_Sbit_Error_axis{false} \
-CONFIG.Inject_Sbit_Error_rach{false} \
-CONFIG.Inject_Sbit_Error_rdch{false} \
-CONFIG.Inject_Sbit_Error_wach{false} \
-CONFIG.Inject_Sbit_Error_wdch{false} \
-CONFIG.Inject_Sbit_Error_wrch{false} \
-CONFIG.Input_Data_Width{32} \
-CONFIG.Input_Depth{16} \
-CONFIG.Input_Depth_axis{1024} \
-CONFIG.Input_Depth_rach{16} \
-CONFIG.Input_Depth_rdch{1024} \
-CONFIG.Input_Depth_wach{16} \
-CONFIG.Input_Depth_wdch{1024} \
-CONFIG.Input_Depth_wrch{16} \
-CONFIG.Output_Data_Width{32} \
-CONFIG.Output_Depth{16} \
-CONFIG.Overflow_Flag{false} \
-CONFIG.Overflow_Flag_AXI{false} \
-CONFIG.Overflow_Sense{Active_High} \
-CONFIG.Overflow_Sense_AXI{Active_High} \
-CONFIG.PROTOCOL{AXI4} \
-CONFIG.Performance_Options{First_Word_Fall_Through} \
-CONFIG.Programmable_Empty_Type{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_axis{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wrch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Full_Type{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_axis{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wrch{No_Programmable_Full_Threshold} \
-CONFIG.READ_WRITE_MODE{READ_WRITE} \
-CONFIG.RUSER_Width{0} \
-CONFIG.Read_Clock_Frequency{1} \
-CONFIG.Read_Data_Count{false} \
-CONFIG.Read_Data_Count_Width{4} \
-CONFIG.Register_Slice_Mode_axis{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wrch{Fully_Registered} \
-CONFIG.Reset_Pin{true} \
-CONFIG.Reset_Type{Asynchronous_Reset} \
-CONFIG.TDATA_NUM_BYTES{1} \
-CONFIG.TDEST_WIDTH{0} \
-CONFIG.TID_WIDTH{0} \
-CONFIG.TKEEP_WIDTH{1} \
-CONFIG.TSTRB_WIDTH{1} \
-CONFIG.TUSER_WIDTH{4} \
-CONFIG.Underflow_Flag{false} \
-CONFIG.Underflow_Flag_AXI{false} \
-CONFIG.Underflow_Sense{Active_High} \
-CONFIG.Underflow_Sense_AXI{Active_High} \
-CONFIG.Use_Dout_Reset{true} \
-CONFIG.Use_Embedded_Registers{false} \
-CONFIG.Use_Embedded_Registers_axis{false} \
-CONFIG.Use_Extra_Logic{false} \
-CONFIG.Valid_Flag{false} \
-CONFIG.Valid_Sense{Active_High} \
-CONFIG.WUSER_Width{0} \
-CONFIG.Write_Acknowledge_Flag{false} \
-CONFIG.Write_Acknowledge_Sense{Active_High} \
-CONFIG.Write_Clock_Frequency{1} \
-CONFIG.Write_Data_Count{false} \
-CONFIG.Write_Data_Count_Width{4} \
-CONFIG.axis_type{FIFO} \
-CONFIG.enable_read_pointer_increment_by2{false} \
-CONFIG.rach_type{FIFO} \
-CONFIG.rdch_type{FIFO} \
-CONFIG.synchronization_stages{2} \
-CONFIG.synchronization_stages_axi{2} \
-CONFIG.wach_type{FIFO} \
-CONFIG.wdch_type{FIFO} \
-CONFIG.wrch_type{FIFO} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.INTERFACE_TYPE {AXI_STREAM} \
+	CONFIG.TDATA_NUM_BYTES {4} \
+	CONFIG.TUSER_WIDTH {0} \
+	CONFIG.Input_Depth_axis {2048} \
+	CONFIG.Enable_Data_Counts_axis {true} \
+	CONFIG.Reset_Type {Asynchronous_Reset} \
+	CONFIG.Full_Flags_Reset_Value {1} \
+	CONFIG.TSTRB_WIDTH {4} \
+	CONFIG.TKEEP_WIDTH {4} \
+	CONFIG.FIFO_Implementation_wach {Common_Clock_Distributed_RAM} \
+	CONFIG.Full_Threshold_Assert_Value_wach {15} \
+	CONFIG.Empty_Threshold_Assert_Value_wach {14} \
+	CONFIG.FIFO_Implementation_wrch {Common_Clock_Distributed_RAM} \
+	CONFIG.Full_Threshold_Assert_Value_wrch {15} \
+	CONFIG.Empty_Threshold_Assert_Value_wrch {14} \
+	CONFIG.FIFO_Implementation_rach {Common_Clock_Distributed_RAM} \
+	CONFIG.Full_Threshold_Assert_Value_rach {15} \
+	CONFIG.Empty_Threshold_Assert_Value_rach {14} \
+	CONFIG.Full_Threshold_Assert_Value_axis {2047} \
+	CONFIG.Empty_Threshold_Assert_Value_axis {2046}] [get_ips flashRdData_FIFO]
+generate_target {instantiation_template} [get_files flashRdData_FIFO.xci]
 
-set module_name {axi_interconnect_2s}
-create_ip -name axi_interconnect -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name cmd_fifo_xgemac_txif
 set_property -dict [list \
-CONFIG.ACLK_PERIOD{0} \
-CONFIG.AXI_ADDR_WIDTH{32} \
-CONFIG.Component_Name{axi_interconnect_2s} \
-CONFIG.INTERCONNECT_DATA_WIDTH{512} \
-CONFIG.M00_AXI_ACLK_RATIO{1:1} \
-CONFIG.M00_AXI_DATA_WIDTH{512} \
-CONFIG.M00_AXI_IS_ACLK_ASYNC{1} \
-CONFIG.M00_AXI_READ_FIFO_DELAY{0} \
-CONFIG.M00_AXI_READ_FIFO_DEPTH{512} \
-CONFIG.M00_AXI_READ_ISSUING{32} \
-CONFIG.M00_AXI_REGISTER{1} \
-CONFIG.M00_AXI_WRITE_FIFO_DELAY{0} \
-CONFIG.M00_AXI_WRITE_FIFO_DEPTH{512} \
-CONFIG.M00_AXI_WRITE_ISSUING{1} \
-CONFIG.NUM_SLAVE_PORTS{2} \
-CONFIG.S00_AXI_ACLK_RATIO{1:1} \
-CONFIG.S00_AXI_ARB_PRIORITY{0} \
-CONFIG.S00_AXI_DATA_WIDTH{512} \
-CONFIG.S00_AXI_IS_ACLK_ASYNC{1} \
-CONFIG.S00_AXI_READ_ACCEPTANCE{32} \
-CONFIG.S00_AXI_READ_FIFO_DELAY{0} \
-CONFIG.S00_AXI_READ_FIFO_DEPTH{512} \
-CONFIG.S00_AXI_READ_WRITE_SUPPORT{READ/WRITE} \
-CONFIG.S00_AXI_REGISTER{1} \
-CONFIG.S00_AXI_WRITE_ACCEPTANCE{1} \
-CONFIG.S00_AXI_WRITE_FIFO_DELAY{0} \
-CONFIG.S00_AXI_WRITE_FIFO_DEPTH{512} \
-CONFIG.S01_AXI_ACLK_RATIO{1:1} \
-CONFIG.S01_AXI_ARB_PRIORITY{0} \
-CONFIG.S01_AXI_DATA_WIDTH{512} \
-CONFIG.S01_AXI_IS_ACLK_ASYNC{1} \
-CONFIG.S01_AXI_READ_ACCEPTANCE{32} \
-CONFIG.S01_AXI_READ_FIFO_DELAY{0} \
-CONFIG.S01_AXI_READ_FIFO_DEPTH{512} \
-CONFIG.S01_AXI_READ_WRITE_SUPPORT{READ/WRITE} \
-CONFIG.S01_AXI_REGISTER{1} \
-CONFIG.S01_AXI_WRITE_ACCEPTANCE{1} \
-CONFIG.S01_AXI_WRITE_FIFO_DELAY{0} \
-CONFIG.S01_AXI_WRITE_FIFO_DEPTH{512} \
-CONFIG.S02_AXI_ACLK_RATIO{1:1} \
-CONFIG.S02_AXI_ARB_PRIORITY{0} \
-CONFIG.S02_AXI_DATA_WIDTH{512} \
-CONFIG.S02_AXI_IS_ACLK_ASYNC{1} \
-CONFIG.S02_AXI_READ_ACCEPTANCE{1} \
-CONFIG.S02_AXI_READ_FIFO_DELAY{0} \
-CONFIG.S02_AXI_READ_FIFO_DEPTH{0} \
-CONFIG.S02_AXI_READ_WRITE_SUPPORT{READ/WRITE} \
-CONFIG.S02_AXI_REGISTER{1} \
-CONFIG.S02_AXI_WRITE_ACCEPTANCE{1} \
-CONFIG.S02_AXI_WRITE_FIFO_DELAY{0} \
-CONFIG.S02_AXI_WRITE_FIFO_DEPTH{0} \
-CONFIG.S03_AXI_ACLK_RATIO{1:1} \
-CONFIG.S03_AXI_ARB_PRIORITY{0} \
-CONFIG.S03_AXI_DATA_WIDTH{32} \
-CONFIG.S03_AXI_IS_ACLK_ASYNC{0} \
-CONFIG.S03_AXI_READ_ACCEPTANCE{1} \
-CONFIG.S03_AXI_READ_FIFO_DELAY{0} \
-CONFIG.S03_AXI_READ_FIFO_DEPTH{0} \
-CONFIG.S03_AXI_READ_WRITE_SUPPORT{READ/WRITE} \
-CONFIG.S03_AXI_REGISTER{0} \
-CONFIG.S03_AXI_WRITE_ACCEPTANCE{1} \
-CONFIG.S03_AXI_WRITE_FIFO_DELAY{0} \
-CONFIG.S03_AXI_WRITE_FIFO_DEPTH{0} \
-CONFIG.S04_AXI_ACLK_RATIO{1:1} \
-CONFIG.S04_AXI_ARB_PRIORITY{0} \
-CONFIG.S04_AXI_DATA_WIDTH{32} \
-CONFIG.S04_AXI_IS_ACLK_ASYNC{0} \
-CONFIG.S04_AXI_READ_ACCEPTANCE{1} \
-CONFIG.S04_AXI_READ_FIFO_DELAY{0} \
-CONFIG.S04_AXI_READ_FIFO_DEPTH{0} \
-CONFIG.S04_AXI_READ_WRITE_SUPPORT{READ/WRITE} \
-CONFIG.S04_AXI_REGISTER{0} \
-CONFIG.S04_AXI_WRITE_ACCEPTANCE{1} \
-CONFIG.S04_AXI_WRITE_FIFO_DELAY{0} \
-CONFIG.S04_AXI_WRITE_FIFO_DEPTH{0} \
-CONFIG.S05_AXI_ACLK_RATIO{1:1} \
-CONFIG.S05_AXI_ARB_PRIORITY{0} \
-CONFIG.S05_AXI_DATA_WIDTH{32} \
-CONFIG.S05_AXI_IS_ACLK_ASYNC{0} \
-CONFIG.S05_AXI_READ_ACCEPTANCE{1} \
-CONFIG.S05_AXI_READ_FIFO_DELAY{0} \
-CONFIG.S05_AXI_READ_FIFO_DEPTH{0} \
-CONFIG.S05_AXI_READ_WRITE_SUPPORT{READ/WRITE} \
-CONFIG.S05_AXI_REGISTER{0} \
-CONFIG.S05_AXI_WRITE_ACCEPTANCE{1} \
-CONFIG.S05_AXI_WRITE_FIFO_DELAY{0} \
-CONFIG.S05_AXI_WRITE_FIFO_DEPTH{0} \
-CONFIG.S06_AXI_ACLK_RATIO{1:1} \
-CONFIG.S06_AXI_ARB_PRIORITY{0} \
-CONFIG.S06_AXI_DATA_WIDTH{32} \
-CONFIG.S06_AXI_IS_ACLK_ASYNC{0} \
-CONFIG.S06_AXI_READ_ACCEPTANCE{1} \
-CONFIG.S06_AXI_READ_FIFO_DELAY{0} \
-CONFIG.S06_AXI_READ_FIFO_DEPTH{0} \
-CONFIG.S06_AXI_READ_WRITE_SUPPORT{READ/WRITE} \
-CONFIG.S06_AXI_REGISTER{0} \
-CONFIG.S06_AXI_WRITE_ACCEPTANCE{1} \
-CONFIG.S06_AXI_WRITE_FIFO_DELAY{0} \
-CONFIG.S06_AXI_WRITE_FIFO_DEPTH{0} \
-CONFIG.S07_AXI_ACLK_RATIO{1:1} \
-CONFIG.S07_AXI_ARB_PRIORITY{0} \
-CONFIG.S07_AXI_DATA_WIDTH{32} \
-CONFIG.S07_AXI_IS_ACLK_ASYNC{0} \
-CONFIG.S07_AXI_READ_ACCEPTANCE{1} \
-CONFIG.S07_AXI_READ_FIFO_DELAY{0} \
-CONFIG.S07_AXI_READ_FIFO_DEPTH{0} \
-CONFIG.S07_AXI_READ_WRITE_SUPPORT{READ/WRITE} \
-CONFIG.S07_AXI_REGISTER{0} \
-CONFIG.S07_AXI_WRITE_ACCEPTANCE{1} \
-CONFIG.S07_AXI_WRITE_FIFO_DELAY{0} \
-CONFIG.S07_AXI_WRITE_FIFO_DEPTH{0} \
-CONFIG.S08_AXI_ACLK_RATIO{1:1} \
-CONFIG.S08_AXI_ARB_PRIORITY{0} \
-CONFIG.S08_AXI_DATA_WIDTH{32} \
-CONFIG.S08_AXI_IS_ACLK_ASYNC{0} \
-CONFIG.S08_AXI_READ_ACCEPTANCE{1} \
-CONFIG.S08_AXI_READ_FIFO_DELAY{0} \
-CONFIG.S08_AXI_READ_FIFO_DEPTH{0} \
-CONFIG.S08_AXI_READ_WRITE_SUPPORT{READ/WRITE} \
-CONFIG.S08_AXI_REGISTER{0} \
-CONFIG.S08_AXI_WRITE_ACCEPTANCE{1} \
-CONFIG.S08_AXI_WRITE_FIFO_DELAY{0} \
-CONFIG.S08_AXI_WRITE_FIFO_DEPTH{0} \
-CONFIG.S09_AXI_ACLK_RATIO{1:1} \
-CONFIG.S09_AXI_ARB_PRIORITY{0} \
-CONFIG.S09_AXI_DATA_WIDTH{32} \
-CONFIG.S09_AXI_IS_ACLK_ASYNC{0} \
-CONFIG.S09_AXI_READ_ACCEPTANCE{1} \
-CONFIG.S09_AXI_READ_FIFO_DELAY{0} \
-CONFIG.S09_AXI_READ_FIFO_DEPTH{0} \
-CONFIG.S09_AXI_READ_WRITE_SUPPORT{READ/WRITE} \
-CONFIG.S09_AXI_REGISTER{0} \
-CONFIG.S09_AXI_WRITE_ACCEPTANCE{1} \
-CONFIG.S09_AXI_WRITE_FIFO_DELAY{0} \
-CONFIG.S09_AXI_WRITE_FIFO_DEPTH{0} \
-CONFIG.S10_AXI_ACLK_RATIO{1:1} \
-CONFIG.S10_AXI_ARB_PRIORITY{0} \
-CONFIG.S10_AXI_DATA_WIDTH{32} \
-CONFIG.S10_AXI_IS_ACLK_ASYNC{0} \
-CONFIG.S10_AXI_READ_ACCEPTANCE{1} \
-CONFIG.S10_AXI_READ_FIFO_DELAY{0} \
-CONFIG.S10_AXI_READ_FIFO_DEPTH{0} \
-CONFIG.S10_AXI_READ_WRITE_SUPPORT{READ/WRITE} \
-CONFIG.S10_AXI_REGISTER{0} \
-CONFIG.S10_AXI_WRITE_ACCEPTANCE{1} \
-CONFIG.S10_AXI_WRITE_FIFO_DELAY{0} \
-CONFIG.S10_AXI_WRITE_FIFO_DEPTH{0} \
-CONFIG.S11_AXI_ACLK_RATIO{1:1} \
-CONFIG.S11_AXI_ARB_PRIORITY{0} \
-CONFIG.S11_AXI_DATA_WIDTH{32} \
-CONFIG.S11_AXI_IS_ACLK_ASYNC{0} \
-CONFIG.S11_AXI_READ_ACCEPTANCE{1} \
-CONFIG.S11_AXI_READ_FIFO_DELAY{0} \
-CONFIG.S11_AXI_READ_FIFO_DEPTH{0} \
-CONFIG.S11_AXI_READ_WRITE_SUPPORT{READ/WRITE} \
-CONFIG.S11_AXI_REGISTER{0} \
-CONFIG.S11_AXI_WRITE_ACCEPTANCE{1} \
-CONFIG.S11_AXI_WRITE_FIFO_DELAY{0} \
-CONFIG.S11_AXI_WRITE_FIFO_DEPTH{0} \
-CONFIG.S12_AXI_ACLK_RATIO{1:1} \
-CONFIG.S12_AXI_ARB_PRIORITY{0} \
-CONFIG.S12_AXI_DATA_WIDTH{32} \
-CONFIG.S12_AXI_IS_ACLK_ASYNC{0} \
-CONFIG.S12_AXI_READ_ACCEPTANCE{1} \
-CONFIG.S12_AXI_READ_FIFO_DELAY{0} \
-CONFIG.S12_AXI_READ_FIFO_DEPTH{0} \
-CONFIG.S12_AXI_READ_WRITE_SUPPORT{READ/WRITE} \
-CONFIG.S12_AXI_REGISTER{0} \
-CONFIG.S12_AXI_WRITE_ACCEPTANCE{1} \
-CONFIG.S12_AXI_WRITE_FIFO_DELAY{0} \
-CONFIG.S12_AXI_WRITE_FIFO_DEPTH{0} \
-CONFIG.S13_AXI_ACLK_RATIO{1:1} \
-CONFIG.S13_AXI_ARB_PRIORITY{0} \
-CONFIG.S13_AXI_DATA_WIDTH{32} \
-CONFIG.S13_AXI_IS_ACLK_ASYNC{0} \
-CONFIG.S13_AXI_READ_ACCEPTANCE{1} \
-CONFIG.S13_AXI_READ_FIFO_DELAY{0} \
-CONFIG.S13_AXI_READ_FIFO_DEPTH{0} \
-CONFIG.S13_AXI_READ_WRITE_SUPPORT{READ/WRITE} \
-CONFIG.S13_AXI_REGISTER{0} \
-CONFIG.S13_AXI_WRITE_ACCEPTANCE{1} \
-CONFIG.S13_AXI_WRITE_FIFO_DELAY{0} \
-CONFIG.S13_AXI_WRITE_FIFO_DEPTH{0} \
-CONFIG.S14_AXI_ACLK_RATIO{1:1} \
-CONFIG.S14_AXI_ARB_PRIORITY{0} \
-CONFIG.S14_AXI_DATA_WIDTH{32} \
-CONFIG.S14_AXI_IS_ACLK_ASYNC{0} \
-CONFIG.S14_AXI_READ_ACCEPTANCE{1} \
-CONFIG.S14_AXI_READ_FIFO_DELAY{0} \
-CONFIG.S14_AXI_READ_FIFO_DEPTH{0} \
-CONFIG.S14_AXI_READ_WRITE_SUPPORT{READ/WRITE} \
-CONFIG.S14_AXI_REGISTER{0} \
-CONFIG.S14_AXI_WRITE_ACCEPTANCE{1} \
-CONFIG.S14_AXI_WRITE_FIFO_DELAY{0} \
-CONFIG.S14_AXI_WRITE_FIFO_DEPTH{0} \
-CONFIG.S15_AXI_ACLK_RATIO{1:1} \
-CONFIG.S15_AXI_ARB_PRIORITY{0} \
-CONFIG.S15_AXI_DATA_WIDTH{32} \
-CONFIG.S15_AXI_IS_ACLK_ASYNC{0} \
-CONFIG.S15_AXI_READ_ACCEPTANCE{1} \
-CONFIG.S15_AXI_READ_FIFO_DELAY{0} \
-CONFIG.S15_AXI_READ_FIFO_DEPTH{0} \
-CONFIG.S15_AXI_READ_WRITE_SUPPORT{READ/WRITE} \
-CONFIG.S15_AXI_REGISTER{0} \
-CONFIG.S15_AXI_WRITE_ACCEPTANCE{1} \
-CONFIG.S15_AXI_WRITE_FIFO_DELAY{0} \
-CONFIG.S15_AXI_WRITE_FIFO_DEPTH{0} \
-CONFIG.SYNCHRONIZATION_STAGES{3} \
-CONFIG.THREAD_ID_WIDTH{0} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.Input_Data_Width {1} \
+	CONFIG.Input_Depth {4096} \
+	CONFIG.Output_Data_Width {1} \
+	CONFIG.Output_Depth {4096} \
+	CONFIG.Data_Count_Width {12} \
+	CONFIG.Write_Data_Count_Width {12} \
+	CONFIG.Read_Data_Count_Width {12} \
+	CONFIG.Full_Threshold_Assert_Value {4094} \
+	CONFIG.Full_Threshold_Negate_Value {4093}] [get_ips cmd_fifo_xgemac_txif]
+generate_target {instantiation_template} [get_files cmd_fifo_xgemac_txif.xci]
 
-set module_name {FIS_IN_FIFO}
-create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name axis_sync_fifo
 set_property -dict [list \
-CONFIG.ADDRESS_WIDTH{32} \
-CONFIG.ARUSER_Width{0} \
-CONFIG.AWUSER_Width{0} \
-CONFIG.Add_NGC_Constraint_AXI{false} \
-CONFIG.Almost_Empty_Flag{false} \
-CONFIG.Almost_Full_Flag{false} \
-CONFIG.BUSER_Width{0} \
-CONFIG.Clock_Enable_Type{Slave_Interface_Clock_Enable} \
-CONFIG.Clock_Type_AXI{Common_Clock} \
-CONFIG.Component_Name{FIS_IN_FIFO} \
-CONFIG.DATA_WIDTH{64} \
-CONFIG.Data_Count{false} \
-CONFIG.Data_Count_Width{7} \
-CONFIG.Disable_Timing_Violations{false} \
-CONFIG.Disable_Timing_Violations_AXI{false} \
-CONFIG.Dout_Reset_Value{0} \
-CONFIG.Empty_Threshold_Assert_Value{4} \
-CONFIG.Empty_Threshold_Assert_Value_axis{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wrch{1022} \
-CONFIG.Empty_Threshold_Negate_Value{5} \
-CONFIG.Enable_Common_Overflow{false} \
-CONFIG.Enable_Common_Underflow{false} \
-CONFIG.Enable_Data_Counts_axis{false} \
-CONFIG.Enable_Data_Counts_rach{false} \
-CONFIG.Enable_Data_Counts_rdch{false} \
-CONFIG.Enable_Data_Counts_wach{false} \
-CONFIG.Enable_Data_Counts_wdch{false} \
-CONFIG.Enable_Data_Counts_wrch{false} \
-CONFIG.Enable_ECC{false} \
-CONFIG.Enable_ECC_axis{false} \
-CONFIG.Enable_ECC_rach{false} \
-CONFIG.Enable_ECC_rdch{false} \
-CONFIG.Enable_ECC_wach{false} \
-CONFIG.Enable_ECC_wdch{false} \
-CONFIG.Enable_ECC_wrch{false} \
-CONFIG.Enable_Reset_Synchronization{true} \
-CONFIG.Enable_TLAST{false} \
-CONFIG.Enable_TREADY{true} \
-CONFIG.FIFO_Application_Type_axis{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wrch{Data_FIFO} \
-CONFIG.FIFO_Implementation_axis{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wrch{Common_Clock_Block_RAM} \
-CONFIG.Fifo_Implementation{Common_Clock_Distributed_RAM} \
-CONFIG.Full_Flags_Reset_Value{1} \
-CONFIG.Full_Threshold_Assert_Value{60} \
-CONFIG.Full_Threshold_Assert_Value_axis{1023} \
-CONFIG.Full_Threshold_Assert_Value_rach{1023} \
-CONFIG.Full_Threshold_Assert_Value_rdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wach{1023} \
-CONFIG.Full_Threshold_Assert_Value_wdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wrch{1023} \
-CONFIG.Full_Threshold_Negate_Value{59} \
-CONFIG.HAS_ACLKEN{false} \
-CONFIG.HAS_TKEEP{false} \
-CONFIG.HAS_TSTRB{false} \
-CONFIG.ID_WIDTH{0} \
-CONFIG.INTERFACE_TYPE{Native} \
-CONFIG.Inject_Dbit_Error{false} \
-CONFIG.Inject_Dbit_Error_axis{false} \
-CONFIG.Inject_Dbit_Error_rach{false} \
-CONFIG.Inject_Dbit_Error_rdch{false} \
-CONFIG.Inject_Dbit_Error_wach{false} \
-CONFIG.Inject_Dbit_Error_wdch{false} \
-CONFIG.Inject_Dbit_Error_wrch{false} \
-CONFIG.Inject_Sbit_Error{false} \
-CONFIG.Inject_Sbit_Error_axis{false} \
-CONFIG.Inject_Sbit_Error_rach{false} \
-CONFIG.Inject_Sbit_Error_rdch{false} \
-CONFIG.Inject_Sbit_Error_wach{false} \
-CONFIG.Inject_Sbit_Error_wdch{false} \
-CONFIG.Inject_Sbit_Error_wrch{false} \
-CONFIG.Input_Data_Width{32} \
-CONFIG.Input_Depth{64} \
-CONFIG.Input_Depth_axis{1024} \
-CONFIG.Input_Depth_rach{16} \
-CONFIG.Input_Depth_rdch{1024} \
-CONFIG.Input_Depth_wach{16} \
-CONFIG.Input_Depth_wdch{1024} \
-CONFIG.Input_Depth_wrch{16} \
-CONFIG.Output_Data_Width{32} \
-CONFIG.Output_Depth{64} \
-CONFIG.Overflow_Flag{false} \
-CONFIG.Overflow_Flag_AXI{false} \
-CONFIG.Overflow_Sense{Active_High} \
-CONFIG.Overflow_Sense_AXI{Active_High} \
-CONFIG.PROTOCOL{AXI4} \
-CONFIG.Performance_Options{First_Word_Fall_Through} \
-CONFIG.Programmable_Empty_Type{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_axis{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wrch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Full_Type{Single_Programmable_Full_Threshold_Constant} \
-CONFIG.Programmable_Full_Type_axis{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wrch{No_Programmable_Full_Threshold} \
-CONFIG.READ_WRITE_MODE{READ_WRITE} \
-CONFIG.RUSER_Width{0} \
-CONFIG.Read_Clock_Frequency{1} \
-CONFIG.Read_Data_Count{false} \
-CONFIG.Read_Data_Count_Width{7} \
-CONFIG.Register_Slice_Mode_axis{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wrch{Fully_Registered} \
-CONFIG.Reset_Pin{true} \
-CONFIG.Reset_Type{Asynchronous_Reset} \
-CONFIG.TDATA_NUM_BYTES{1} \
-CONFIG.TDEST_WIDTH{0} \
-CONFIG.TID_WIDTH{0} \
-CONFIG.TKEEP_WIDTH{1} \
-CONFIG.TSTRB_WIDTH{1} \
-CONFIG.TUSER_WIDTH{4} \
-CONFIG.Underflow_Flag{false} \
-CONFIG.Underflow_Flag_AXI{false} \
-CONFIG.Underflow_Sense{Active_High} \
-CONFIG.Underflow_Sense_AXI{Active_High} \
-CONFIG.Use_Dout_Reset{true} \
-CONFIG.Use_Embedded_Registers{false} \
-CONFIG.Use_Embedded_Registers_axis{false} \
-CONFIG.Use_Extra_Logic{true} \
-CONFIG.Valid_Flag{false} \
-CONFIG.Valid_Sense{Active_High} \
-CONFIG.WUSER_Width{0} \
-CONFIG.Write_Acknowledge_Flag{false} \
-CONFIG.Write_Acknowledge_Sense{Active_High} \
-CONFIG.Write_Clock_Frequency{1} \
-CONFIG.Write_Data_Count{false} \
-CONFIG.Write_Data_Count_Width{7} \
-CONFIG.axis_type{FIFO} \
-CONFIG.enable_read_pointer_increment_by2{false} \
-CONFIG.rach_type{FIFO} \
-CONFIG.rdch_type{FIFO} \
-CONFIG.synchronization_stages{2} \
-CONFIG.synchronization_stages_axi{2} \
-CONFIG.wach_type{FIFO} \
-CONFIG.wdch_type{FIFO} \
-CONFIG.wrch_type{FIFO} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.INTERFACE_TYPE {AXI_STREAM} \
+	CONFIG.TDATA_NUM_BYTES {8} \
+	CONFIG.TUSER_WIDTH {0} \
+	CONFIG.Enable_TLAST {true} \
+	CONFIG.HAS_TKEEP {true} \
+	CONFIG.Input_Depth_axis {4096} \
+	CONFIG.Enable_Data_Counts_axis {true} \
+	CONFIG.Reset_Type {Asynchronous_Reset} \
+	CONFIG.Full_Flags_Reset_Value {1} \
+	CONFIG.TSTRB_WIDTH {8} \
+	CONFIG.TKEEP_WIDTH {8} \
+	CONFIG.FIFO_Implementation_wach {Common_Clock_Distributed_RAM} \
+	CONFIG.Full_Threshold_Assert_Value_wach {15} \
+	CONFIG.Empty_Threshold_Assert_Value_wach {14} \
+	CONFIG.FIFO_Implementation_wrch {Common_Clock_Distributed_RAM} \
+	CONFIG.Full_Threshold_Assert_Value_wrch {15} \
+	CONFIG.Empty_Threshold_Assert_Value_wrch {14} \
+	CONFIG.FIFO_Implementation_rach {Common_Clock_Distributed_RAM} \
+	CONFIG.Full_Threshold_Assert_Value_rach {15} \
+	CONFIG.Empty_Threshold_Assert_Value_rach {14} \
+	CONFIG.Full_Threshold_Assert_Value_axis {4095} \
+	CONFIG.Empty_Threshold_Assert_Value_axis {4094}] [get_ips axis_sync_fifo]
+generate_target {instantiation_template} [get_files axis_sync_fifo.xci]
 
-set module_name {singleSignalCDC}
-create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name asyn_fifo_64To32
 set_property -dict [list \
-CONFIG.ADDRESS_WIDTH{32} \
-CONFIG.ARUSER_Width{0} \
-CONFIG.AWUSER_Width{0} \
-CONFIG.Add_NGC_Constraint_AXI{false} \
-CONFIG.Almost_Empty_Flag{false} \
-CONFIG.Almost_Full_Flag{false} \
-CONFIG.BUSER_Width{0} \
-CONFIG.Clock_Enable_Type{Slave_Interface_Clock_Enable} \
-CONFIG.Clock_Type_AXI{Common_Clock} \
-CONFIG.Component_Name{singleSignalCDC} \
-CONFIG.DATA_WIDTH{64} \
-CONFIG.Data_Count{false} \
-CONFIG.Data_Count_Width{4} \
-CONFIG.Disable_Timing_Violations{false} \
-CONFIG.Disable_Timing_Violations_AXI{false} \
-CONFIG.Dout_Reset_Value{0} \
-CONFIG.Empty_Threshold_Assert_Value{2} \
-CONFIG.Empty_Threshold_Assert_Value_axis{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wrch{1022} \
-CONFIG.Empty_Threshold_Negate_Value{3} \
-CONFIG.Enable_Common_Overflow{false} \
-CONFIG.Enable_Common_Underflow{false} \
-CONFIG.Enable_Data_Counts_axis{false} \
-CONFIG.Enable_Data_Counts_rach{false} \
-CONFIG.Enable_Data_Counts_rdch{false} \
-CONFIG.Enable_Data_Counts_wach{false} \
-CONFIG.Enable_Data_Counts_wdch{false} \
-CONFIG.Enable_Data_Counts_wrch{false} \
-CONFIG.Enable_ECC{false} \
-CONFIG.Enable_ECC_axis{false} \
-CONFIG.Enable_ECC_rach{false} \
-CONFIG.Enable_ECC_rdch{false} \
-CONFIG.Enable_ECC_wach{false} \
-CONFIG.Enable_ECC_wdch{false} \
-CONFIG.Enable_ECC_wrch{false} \
-CONFIG.Enable_Reset_Synchronization{true} \
-CONFIG.Enable_TLAST{false} \
-CONFIG.Enable_TREADY{true} \
-CONFIG.FIFO_Application_Type_axis{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wrch{Data_FIFO} \
-CONFIG.FIFO_Implementation_axis{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wrch{Common_Clock_Block_RAM} \
-CONFIG.Fifo_Implementation{Independent_Clocks_Distributed_RAM} \
-CONFIG.Full_Flags_Reset_Value{0} \
-CONFIG.Full_Threshold_Assert_Value{13} \
-CONFIG.Full_Threshold_Assert_Value_axis{1023} \
-CONFIG.Full_Threshold_Assert_Value_rach{1023} \
-CONFIG.Full_Threshold_Assert_Value_rdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wach{1023} \
-CONFIG.Full_Threshold_Assert_Value_wdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wrch{1023} \
-CONFIG.Full_Threshold_Negate_Value{12} \
-CONFIG.HAS_ACLKEN{false} \
-CONFIG.HAS_TKEEP{false} \
-CONFIG.HAS_TSTRB{false} \
-CONFIG.ID_WIDTH{0} \
-CONFIG.INTERFACE_TYPE{Native} \
-CONFIG.Inject_Dbit_Error{false} \
-CONFIG.Inject_Dbit_Error_axis{false} \
-CONFIG.Inject_Dbit_Error_rach{false} \
-CONFIG.Inject_Dbit_Error_rdch{false} \
-CONFIG.Inject_Dbit_Error_wach{false} \
-CONFIG.Inject_Dbit_Error_wdch{false} \
-CONFIG.Inject_Dbit_Error_wrch{false} \
-CONFIG.Inject_Sbit_Error{false} \
-CONFIG.Inject_Sbit_Error_axis{false} \
-CONFIG.Inject_Sbit_Error_rach{false} \
-CONFIG.Inject_Sbit_Error_rdch{false} \
-CONFIG.Inject_Sbit_Error_wach{false} \
-CONFIG.Inject_Sbit_Error_wdch{false} \
-CONFIG.Inject_Sbit_Error_wrch{false} \
-CONFIG.Input_Data_Width{1} \
-CONFIG.Input_Depth{16} \
-CONFIG.Input_Depth_axis{1024} \
-CONFIG.Input_Depth_rach{16} \
-CONFIG.Input_Depth_rdch{1024} \
-CONFIG.Input_Depth_wach{16} \
-CONFIG.Input_Depth_wdch{1024} \
-CONFIG.Input_Depth_wrch{16} \
-CONFIG.Output_Data_Width{1} \
-CONFIG.Output_Depth{16} \
-CONFIG.Overflow_Flag{false} \
-CONFIG.Overflow_Flag_AXI{false} \
-CONFIG.Overflow_Sense{Active_High} \
-CONFIG.Overflow_Sense_AXI{Active_High} \
-CONFIG.PROTOCOL{AXI4} \
-CONFIG.Performance_Options{Standard_FIFO} \
-CONFIG.Programmable_Empty_Type{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_axis{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wrch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Full_Type{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_axis{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wrch{No_Programmable_Full_Threshold} \
-CONFIG.READ_WRITE_MODE{READ_WRITE} \
-CONFIG.RUSER_Width{0} \
-CONFIG.Read_Clock_Frequency{1} \
-CONFIG.Read_Data_Count{false} \
-CONFIG.Read_Data_Count_Width{4} \
-CONFIG.Register_Slice_Mode_axis{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wrch{Fully_Registered} \
-CONFIG.Reset_Pin{false} \
-CONFIG.Reset_Type{Asynchronous_Reset} \
-CONFIG.TDATA_NUM_BYTES{1} \
-CONFIG.TDEST_WIDTH{0} \
-CONFIG.TID_WIDTH{0} \
-CONFIG.TKEEP_WIDTH{1} \
-CONFIG.TSTRB_WIDTH{1} \
-CONFIG.TUSER_WIDTH{4} \
-CONFIG.Underflow_Flag{false} \
-CONFIG.Underflow_Flag_AXI{false} \
-CONFIG.Underflow_Sense{Active_High} \
-CONFIG.Underflow_Sense_AXI{Active_High} \
-CONFIG.Use_Dout_Reset{false} \
-CONFIG.Use_Embedded_Registers{false} \
-CONFIG.Use_Embedded_Registers_axis{false} \
-CONFIG.Use_Extra_Logic{false} \
-CONFIG.Valid_Flag{false} \
-CONFIG.Valid_Sense{Active_High} \
-CONFIG.WUSER_Width{0} \
-CONFIG.Write_Acknowledge_Flag{false} \
-CONFIG.Write_Acknowledge_Sense{Active_High} \
-CONFIG.Write_Clock_Frequency{1} \
-CONFIG.Write_Data_Count{false} \
-CONFIG.Write_Data_Count_Width{4} \
-CONFIG.axis_type{FIFO} \
-CONFIG.enable_read_pointer_increment_by2{false} \
-CONFIG.rach_type{FIFO} \
-CONFIG.rdch_type{FIFO} \
-CONFIG.synchronization_stages{2} \
-CONFIG.synchronization_stages_axi{2} \
-CONFIG.wach_type{FIFO} \
-CONFIG.wdch_type{FIFO} \
-CONFIG.wrch_type{FIFO} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.Fifo_Implementation {Independent_Clocks_Block_RAM} \
+	CONFIG.synchronization_stages {4} \
+	CONFIG.Performance_Options {First_Word_Fall_Through} \
+	CONFIG.Input_Data_Width {64} \
+	CONFIG.Output_Data_Width {32} \
+	CONFIG.Use_Embedded_Registers {true} \
+	CONFIG.Use_Extra_Logic {true} \
+	CONFIG.Output_Depth {2048} \
+	CONFIG.Reset_Type {Asynchronous_Reset} \
+	CONFIG.Full_Flags_Reset_Value {1} \
+	CONFIG.Write_Data_Count_Width {11} \
+	CONFIG.Read_Data_Count_Width {12} \
+	CONFIG.Full_Threshold_Assert_Value {1021} \
+	CONFIG.Full_Threshold_Negate_Value {1020} \
+	CONFIG.Empty_Threshold_Assert_Value {4} \
+	CONFIG.Empty_Threshold_Negate_Value {5}] [get_ips asyn_fifo_64To32]
+generate_target {instantiation_template} [get_files asyn_fifo_64To32.xci]
 
-set module_name {pcie2axilite_sub_pcie3_7x_0_1}
-create_ip -name pcie3_7x -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name asyn_fifo_45
 set_property -dict [list \
-CONFIG.AXISTEN_IF_RC_STRADDLE{false} \
-CONFIG.Component_Name{pcie2axilite_sub_pcie3_7x_0_1} \
-CONFIG.PF0_AER_CAP_ECRC_CHECK_CAPABLE{false} \
-CONFIG.PF0_AER_CAP_ECRC_GEN_CAPABLE{false} \
-CONFIG.PF0_CLASS_CODE{058000} \
-CONFIG.PF0_DEVICE_ID{0007} \
-CONFIG.PF0_DEV_CAP2_32B_ATOMIC_COMPLETER_SUPPORT{false} \
-CONFIG.PF0_DEV_CAP2_64B_ATOMIC_COMPLETER_SUPPORT{false} \
-CONFIG.PF0_DEV_CAP2_128B_CAS_ATOMIC_COMPLETER_SUPPORT{false} \
-CONFIG.PF0_DEV_CAP2_OBFF_SUPPORT{00_Not_Supported} \
-CONFIG.PF0_DEV_CAP2_TPH_COMPLETER_SUPPORT{false} \
-CONFIG.PF0_DEV_CAP_FUNCTION_LEVEL_RESET_CAPABLE{false} \
-CONFIG.PF0_INTERRUPT_PIN{INTA} \
-CONFIG.PF0_LINK_STATUS_SLOT_CLOCK_CONFIG{false} \
-CONFIG.PF0_MSIX_CAP_PBA_BIR{BAR_0} \
-CONFIG.PF0_MSIX_CAP_PBA_OFFSET{00000000} \
-CONFIG.PF0_MSIX_CAP_TABLE_BIR{BAR_0} \
-CONFIG.PF0_MSIX_CAP_TABLE_OFFSET{00000000} \
-CONFIG.PF0_MSIX_CAP_TABLE_SIZE{000} \
-CONFIG.PF0_MSI_CAP_MULTIMSGCAP{1_vector} \
-CONFIG.PF0_PM_CAP_PMESUPPORT_D0{false} \
-CONFIG.PF0_PM_CAP_PMESUPPORT_D1{false} \
-CONFIG.PF0_PM_CAP_PMESUPPORT_D3HOT{false} \
-CONFIG.PF0_PM_CAP_SUPP_D1_STATE{false} \
-CONFIG.PF0_REVISION_ID{00} \
-CONFIG.PF0_SRIOV_CAP_INITIAL_VF{0} \
-CONFIG.PF0_SRIOV_FIRST_VF_OFFSET{N/A} \
-CONFIG.PF0_SRIOV_FUNC_DEP_LINK{0000} \
-CONFIG.PF0_SRIOV_SUPPORTED_PAGE_SIZE{00000553} \
-CONFIG.PF0_SRIOV_VF_DEVICE_ID{0000} \
-CONFIG.PF0_SUBSYSTEM_ID{0007} \
-CONFIG.PF0_SUBSYSTEM_VENDOR_ID{10EE} \
-CONFIG.PF0_Use_Class_Code_Lookup_Assistant{false} \
-CONFIG.PF1_AER_CAP_ECRC_CHECK_CAPABLE{false} \
-CONFIG.PF1_AER_CAP_ECRC_GEN_CAPABLE{false} \
-CONFIG.PF1_CLASS_CODE{058000} \
-CONFIG.PF1_DEVICE_ID{7011} \
-CONFIG.PF1_INTERRUPT_PIN{NONE} \
-CONFIG.PF1_MSIX_CAP_PBA_BIR{BAR_0} \
-CONFIG.PF1_MSIX_CAP_PBA_OFFSET{00000000} \
-CONFIG.PF1_MSIX_CAP_TABLE_BIR{BAR_0} \
-CONFIG.PF1_MSIX_CAP_TABLE_OFFSET{00000000} \
-CONFIG.PF1_MSIX_CAP_TABLE_SIZE{000} \
-CONFIG.PF1_MSI_CAP_MULTIMSGCAP{1_vector} \
-CONFIG.PF1_REVISION_ID{00} \
-CONFIG.PF1_SRIOV_CAP_INITIAL_VF{0} \
-CONFIG.PF1_SRIOV_CAP_VER{0} \
-CONFIG.PF1_SRIOV_FIRST_VF_OFFSET{N/A} \
-CONFIG.PF1_SRIOV_FUNC_DEP_LINK{0001} \
-CONFIG.PF1_SRIOV_SUPPORTED_PAGE_SIZE{00000553} \
-CONFIG.PF1_SRIOV_VF_DEVICE_ID{0000} \
-CONFIG.PF1_SUBSYSTEM_ID{0007} \
-CONFIG.PF1_Use_Class_Code_Lookup_Assistant{false} \
-CONFIG.PL_LINK_CAP_MAX_LINK_SPEED{2.5_GT/s} \
-CONFIG.PL_LINK_CAP_MAX_LINK_WIDTH{X8} \
-CONFIG.REF_CLK_FREQ{100_MHz} \
-CONFIG.RESET_BOARD_INTERFACE{Custom} \
-CONFIG.SRIOV_CAP_ENABLE{false} \
-CONFIG.SRIOV_CAP_ENABLE_EXT{false} \
-CONFIG.TL_PF_ENABLE_REG{false} \
-CONFIG.USE_BOARD_FLOW{false} \
-CONFIG.VF0_MSIX_CAP_PBA_BIR{BAR_0} \
-CONFIG.VF0_MSIX_CAP_PBA_OFFSET{00000000} \
-CONFIG.VF0_MSIX_CAP_TABLE_BIR{BAR_0} \
-CONFIG.VF0_MSIX_CAP_TABLE_OFFSET{00000000} \
-CONFIG.VF0_MSIX_CAP_TABLE_SIZE{000} \
-CONFIG.VF0_MSI_CAP_MULTIMSGCAP{1_vector} \
-CONFIG.VF1_MSIX_CAP_PBA_BIR{BAR_0} \
-CONFIG.VF1_MSIX_CAP_PBA_OFFSET{00000000} \
-CONFIG.VF1_MSIX_CAP_TABLE_BIR{BAR_0} \
-CONFIG.VF1_MSIX_CAP_TABLE_OFFSET{00000000} \
-CONFIG.VF1_MSIX_CAP_TABLE_SIZE{000} \
-CONFIG.VF1_MSI_CAP_MULTIMSGCAP{1_vector} \
-CONFIG.VF2_MSIX_CAP_PBA_BIR{BAR_0} \
-CONFIG.VF2_MSIX_CAP_PBA_OFFSET{00000000} \
-CONFIG.VF2_MSIX_CAP_TABLE_BIR{BAR_0} \
-CONFIG.VF2_MSIX_CAP_TABLE_OFFSET{00000000} \
-CONFIG.VF2_MSIX_CAP_TABLE_SIZE{000} \
-CONFIG.VF2_MSI_CAP_MULTIMSGCAP{1_vector} \
-CONFIG.VF3_MSIX_CAP_PBA_BIR{BAR_0} \
-CONFIG.VF3_MSIX_CAP_PBA_OFFSET{00000000} \
-CONFIG.VF3_MSIX_CAP_TABLE_BIR{BAR_0} \
-CONFIG.VF3_MSIX_CAP_TABLE_OFFSET{00000000} \
-CONFIG.VF3_MSIX_CAP_TABLE_SIZE{000} \
-CONFIG.VF3_MSI_CAP_MULTIMSGCAP{1_vector} \
-CONFIG.VF4_MSIX_CAP_PBA_BIR{BAR_0} \
-CONFIG.VF4_MSIX_CAP_PBA_OFFSET{00000000} \
-CONFIG.VF4_MSIX_CAP_TABLE_BIR{BAR_0} \
-CONFIG.VF4_MSIX_CAP_TABLE_OFFSET{00000000} \
-CONFIG.VF4_MSIX_CAP_TABLE_SIZE{000} \
-CONFIG.VF4_MSI_CAP_MULTIMSGCAP{1_vector} \
-CONFIG.VF5_MSIX_CAP_PBA_BIR{BAR_0} \
-CONFIG.VF5_MSIX_CAP_PBA_OFFSET{00000000} \
-CONFIG.VF5_MSIX_CAP_TABLE_BIR{BAR_0} \
-CONFIG.VF5_MSIX_CAP_TABLE_OFFSET{00000000} \
-CONFIG.VF5_MSIX_CAP_TABLE_SIZE{000} \
-CONFIG.VF5_MSI_CAP_MULTIMSGCAP{1_vector} \
-CONFIG.alignment_mode{DWORD_Aligned} \
-CONFIG.aspm_support{No_ASPM} \
-CONFIG.axisten_freq{250} \
-CONFIG.axisten_if_enable_client_tag{true} \
-CONFIG.axisten_if_width{64_bit} \
-CONFIG.cfg_ctl_if{false} \
-CONFIG.cfg_ext_if{false} \
-CONFIG.cfg_fc_if{false} \
-CONFIG.cfg_mgmt_if{false} \
-CONFIG.cfg_status_if{false} \
-CONFIG.cfg_tx_msg_if{false} \
-CONFIG.device_port_type{PCI_Express_Endpoint_device} \
-CONFIG.en_ext_ch_gt_drp{false} \
-CONFIG.en_ext_clk{false} \
-CONFIG.en_ext_gt_common{false} \
-CONFIG.en_ext_pipe_interface{false} \
-CONFIG.en_ext_startup{false} \
-CONFIG.en_msi_per_vec_masking{false} \
-CONFIG.en_pcie_drp{false} \
-CONFIG.en_transceiver_status_ports{false} \
-CONFIG.ext_pcie_cfg_space_enabled{false} \
-CONFIG.extended_tag_field{false} \
-CONFIG.gen_x0y0{false} \
-CONFIG.gen_x0y1{false} \
-CONFIG.gen_x0y2{true} \
-CONFIG.gen_x0y3{false} \
-CONFIG.mode_selection{Advanced} \
-CONFIG.pcie_blk_locn{X0Y2} \
-CONFIG.per_func_status_if{false} \
-CONFIG.perf_level{Extreme} \
-CONFIG.pf0_aer_enabled{true} \
-CONFIG.pf0_ari_enabled{false} \
-CONFIG.pf0_bar0_64bit{false} \
-CONFIG.pf0_bar0_enabled{true} \
-CONFIG.pf0_bar0_prefetchable{false} \
-CONFIG.pf0_bar0_scale{Kilobytes} \
-CONFIG.pf0_bar0_size{4} \
-CONFIG.pf0_bar0_type{Memory} \
-CONFIG.pf0_bar1_64bit{false} \
-CONFIG.pf0_bar1_enabled{false} \
-CONFIG.pf0_bar1_prefetchable{false} \
-CONFIG.pf0_bar1_scale{Kilobytes} \
-CONFIG.pf0_bar1_size{2} \
-CONFIG.pf0_bar1_type{N/A} \
-CONFIG.pf0_bar2_64bit{false} \
-CONFIG.pf0_bar2_enabled{false} \
-CONFIG.pf0_bar2_prefetchable{false} \
-CONFIG.pf0_bar2_scale{Kilobytes} \
-CONFIG.pf0_bar2_size{2} \
-CONFIG.pf0_bar2_type{N/A} \
-CONFIG.pf0_bar3_64bit{false} \
-CONFIG.pf0_bar3_enabled{false} \
-CONFIG.pf0_bar3_prefetchable{false} \
-CONFIG.pf0_bar3_scale{Kilobytes} \
-CONFIG.pf0_bar3_size{2} \
-CONFIG.pf0_bar3_type{N/A} \
-CONFIG.pf0_bar4_64bit{false} \
-CONFIG.pf0_bar4_enabled{false} \
-CONFIG.pf0_bar4_prefetchable{false} \
-CONFIG.pf0_bar4_scale{Kilobytes} \
-CONFIG.pf0_bar4_size{2} \
-CONFIG.pf0_bar4_type{N/A} \
-CONFIG.pf0_bar5_enabled{false} \
-CONFIG.pf0_bar5_prefetchable{false} \
-CONFIG.pf0_bar5_scale{Kilobytes} \
-CONFIG.pf0_bar5_size{2} \
-CONFIG.pf0_bar5_type{N/A} \
-CONFIG.pf0_base_class_menu{Simple_communication_controllers} \
-CONFIG.pf0_class_code_base{05} \
-CONFIG.pf0_class_code_interface{00} \
-CONFIG.pf0_class_code_sub{80} \
-CONFIG.pf0_dev_cap_max_payload{512_bytes} \
-CONFIG.pf0_dpa_enabled{false} \
-CONFIG.pf0_dsn_enabled{false} \
-CONFIG.pf0_expansion_rom_enabled{false} \
-CONFIG.pf0_expansion_rom_scale{Kilobytes} \
-CONFIG.pf0_expansion_rom_size{2} \
-CONFIG.pf0_ltr_enabled{false} \
-CONFIG.pf0_msi_enabled{true} \
-CONFIG.pf0_msix_enabled{false} \
-CONFIG.pf0_pb_enabled{false} \
-CONFIG.pf0_rbar_enabled{false} \
-CONFIG.pf0_sriov_bar0_64bit{false} \
-CONFIG.pf0_sriov_bar0_enabled{true} \
-CONFIG.pf0_sriov_bar0_prefetchable{false} \
-CONFIG.pf0_sriov_bar0_scale{Kilobytes} \
-CONFIG.pf0_sriov_bar0_size{2} \
-CONFIG.pf0_sriov_bar0_type{Memory} \
-CONFIG.pf0_sriov_bar1_64bit{false} \
-CONFIG.pf0_sriov_bar1_enabled{false} \
-CONFIG.pf0_sriov_bar1_prefetchable{false} \
-CONFIG.pf0_sriov_bar1_scale{Kilobytes} \
-CONFIG.pf0_sriov_bar1_size{2} \
-CONFIG.pf0_sriov_bar1_type{N/A} \
-CONFIG.pf0_sriov_bar2_64bit{false} \
-CONFIG.pf0_sriov_bar2_enabled{false} \
-CONFIG.pf0_sriov_bar2_prefetchable{false} \
-CONFIG.pf0_sriov_bar2_scale{Kilobytes} \
-CONFIG.pf0_sriov_bar2_size{2} \
-CONFIG.pf0_sriov_bar2_type{N/A} \
-CONFIG.pf0_sriov_bar3_64bit{false} \
-CONFIG.pf0_sriov_bar3_enabled{false} \
-CONFIG.pf0_sriov_bar3_prefetchable{false} \
-CONFIG.pf0_sriov_bar3_scale{Kilobytes} \
-CONFIG.pf0_sriov_bar3_size{2} \
-CONFIG.pf0_sriov_bar3_type{N/A} \
-CONFIG.pf0_sriov_bar4_64bit{false} \
-CONFIG.pf0_sriov_bar4_enabled{false} \
-CONFIG.pf0_sriov_bar4_prefetchable{false} \
-CONFIG.pf0_sriov_bar4_scale{Kilobytes} \
-CONFIG.pf0_sriov_bar4_size{2} \
-CONFIG.pf0_sriov_bar4_type{N/A} \
-CONFIG.pf0_sriov_bar5_enabled{false} \
-CONFIG.pf0_sriov_bar5_prefetchable{false} \
-CONFIG.pf0_sriov_bar5_scale{Kilobytes} \
-CONFIG.pf0_sriov_bar5_size{2} \
-CONFIG.pf0_sriov_bar5_type{N/A} \
-CONFIG.pf0_sriov_cap_ver{0} \
-CONFIG.pf0_sub_class_interface_menu{Generic_XT_compatible_serial_controller} \
-CONFIG.pf0_tphr_enable{false} \
-CONFIG.pf0_vc_cap_enabled{false} \
-CONFIG.pf1_aer_enabled{true} \
-CONFIG.pf1_ari_enabled{false} \
-CONFIG.pf1_bar0_64bit{false} \
-CONFIG.pf1_bar0_enabled{false} \
-CONFIG.pf1_bar0_prefetchable{false} \
-CONFIG.pf1_bar0_scale{Kilobytes} \
-CONFIG.pf1_bar0_size{2} \
-CONFIG.pf1_bar0_type{N/A} \
-CONFIG.pf1_bar1_64bit{false} \
-CONFIG.pf1_bar1_enabled{false} \
-CONFIG.pf1_bar1_prefetchable{false} \
-CONFIG.pf1_bar1_scale{Kilobytes} \
-CONFIG.pf1_bar1_size{2} \
-CONFIG.pf1_bar1_type{N/A} \
-CONFIG.pf1_bar2_64bit{false} \
-CONFIG.pf1_bar2_enabled{false} \
-CONFIG.pf1_bar2_prefetchable{false} \
-CONFIG.pf1_bar2_scale{Kilobytes} \
-CONFIG.pf1_bar2_size{2} \
-CONFIG.pf1_bar2_type{N/A} \
-CONFIG.pf1_bar3_64bit{false} \
-CONFIG.pf1_bar3_enabled{false} \
-CONFIG.pf1_bar3_prefetchable{false} \
-CONFIG.pf1_bar3_scale{Kilobytes} \
-CONFIG.pf1_bar3_size{2} \
-CONFIG.pf1_bar3_type{N/A} \
-CONFIG.pf1_bar4_64bit{false} \
-CONFIG.pf1_bar4_enabled{false} \
-CONFIG.pf1_bar4_prefetchable{false} \
-CONFIG.pf1_bar4_scale{Kilobytes} \
-CONFIG.pf1_bar4_size{2} \
-CONFIG.pf1_bar4_type{N/A} \
-CONFIG.pf1_bar5_enabled{false} \
-CONFIG.pf1_bar5_prefetchable{false} \
-CONFIG.pf1_bar5_scale{Kilobytes} \
-CONFIG.pf1_bar5_size{2} \
-CONFIG.pf1_bar5_type{N/A} \
-CONFIG.pf1_base_class_menu{Simple_communication_controllers} \
-CONFIG.pf1_class_code_base{05} \
-CONFIG.pf1_class_code_interface{00} \
-CONFIG.pf1_class_code_sub{80} \
-CONFIG.pf1_dev_cap_max_payload{512_bytes} \
-CONFIG.pf1_dpa_enabled{false} \
-CONFIG.pf1_dsn_enabled{false} \
-CONFIG.pf1_expansion_rom_enabled{false} \
-CONFIG.pf1_expansion_rom_scale{Kilobytes} \
-CONFIG.pf1_expansion_rom_size{2} \
-CONFIG.pf1_msi_enabled{true} \
-CONFIG.pf1_msix_enabled{false} \
-CONFIG.pf1_pb_enabled{false} \
-CONFIG.pf1_rbar_enabled{false} \
-CONFIG.pf1_sriov_bar0_64bit{false} \
-CONFIG.pf1_sriov_bar0_enabled{true} \
-CONFIG.pf1_sriov_bar0_prefetchable{false} \
-CONFIG.pf1_sriov_bar0_scale{Kilobytes} \
-CONFIG.pf1_sriov_bar0_size{2} \
-CONFIG.pf1_sriov_bar0_type{Memory} \
-CONFIG.pf1_sriov_bar1_64bit{false} \
-CONFIG.pf1_sriov_bar1_enabled{false} \
-CONFIG.pf1_sriov_bar1_prefetchable{false} \
-CONFIG.pf1_sriov_bar1_scale{Kilobytes} \
-CONFIG.pf1_sriov_bar1_size{2} \
-CONFIG.pf1_sriov_bar1_type{N/A} \
-CONFIG.pf1_sriov_bar2_64bit{false} \
-CONFIG.pf1_sriov_bar2_enabled{false} \
-CONFIG.pf1_sriov_bar2_prefetchable{false} \
-CONFIG.pf1_sriov_bar2_scale{Kilobytes} \
-CONFIG.pf1_sriov_bar2_size{2} \
-CONFIG.pf1_sriov_bar2_type{N/A} \
-CONFIG.pf1_sriov_bar3_64bit{false} \
-CONFIG.pf1_sriov_bar3_enabled{false} \
-CONFIG.pf1_sriov_bar3_prefetchable{false} \
-CONFIG.pf1_sriov_bar3_scale{Kilobytes} \
-CONFIG.pf1_sriov_bar3_size{2} \
-CONFIG.pf1_sriov_bar3_type{N/A} \
-CONFIG.pf1_sriov_bar4_64bit{false} \
-CONFIG.pf1_sriov_bar4_enabled{false} \
-CONFIG.pf1_sriov_bar4_prefetchable{false} \
-CONFIG.pf1_sriov_bar4_scale{Kilobytes} \
-CONFIG.pf1_sriov_bar4_size{2} \
-CONFIG.pf1_sriov_bar4_type{N/A} \
-CONFIG.pf1_sriov_bar5_enabled{false} \
-CONFIG.pf1_sriov_bar5_prefetchable{false} \
-CONFIG.pf1_sriov_bar5_scale{Kilobytes} \
-CONFIG.pf1_sriov_bar5_size{2} \
-CONFIG.pf1_sriov_bar5_type{N/A} \
-CONFIG.pf1_sub_class_interface_menu{Generic_XT_compatible_serial_controller} \
-CONFIG.pf1_tphr_enable{false} \
-CONFIG.pipe_sim{false} \
-CONFIG.rcv_msg_if{false} \
-CONFIG.shared_logic_in_core{true} \
-CONFIG.silicon_rev{Production} \
-CONFIG.tandem_mode{None} \
-CONFIG.tl_pf0_enable_reg{true} \
-CONFIG.tx_fc_if{false} \
-CONFIG.vendor_id{10EE} \
-CONFIG.xlnx_ref_board{None} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.Fifo_Implementation {Independent_Clocks_Block_RAM} \
+	CONFIG.synchronization_stages {4} \
+	CONFIG.Performance_Options {First_Word_Fall_Through} \
+	CONFIG.Input_Data_Width {45} \
+	CONFIG.Use_Embedded_Registers {true} \
+	CONFIG.Use_Extra_Logic {true} \
+	CONFIG.Output_Data_Width {45} \
+	CONFIG.Reset_Type {Asynchronous_Reset} \
+	CONFIG.Full_Flags_Reset_Value {1} \
+	CONFIG.Write_Data_Count_Width {11} \
+	CONFIG.Read_Data_Count_Width {11} \
+	CONFIG.Full_Threshold_Assert_Value {1023} \
+	CONFIG.Full_Threshold_Negate_Value {1022} \
+	CONFIG.Empty_Threshold_Assert_Value {4} \
+	CONFIG.Empty_Threshold_Negate_Value {5}] [get_ips asyn_fifo_45]
+generate_target {instantiation_template} [get_files asyn_fifo_45.xci]
 
-set module_name {flashRdData_FIFO}
-create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name asyn_fifo_32To64
 set_property -dict [list \
-CONFIG.ADDRESS_WIDTH{32} \
-CONFIG.ARUSER_Width{0} \
-CONFIG.AWUSER_Width{0} \
-CONFIG.Add_NGC_Constraint_AXI{false} \
-CONFIG.Almost_Empty_Flag{false} \
-CONFIG.Almost_Full_Flag{false} \
-CONFIG.BUSER_Width{0} \
-CONFIG.Clock_Enable_Type{Slave_Interface_Clock_Enable} \
-CONFIG.Clock_Type_AXI{Common_Clock} \
-CONFIG.Component_Name{flashRdData_FIFO} \
-CONFIG.DATA_WIDTH{64} \
-CONFIG.Data_Count{false} \
-CONFIG.Data_Count_Width{12} \
-CONFIG.Disable_Timing_Violations{false} \
-CONFIG.Disable_Timing_Violations_AXI{false} \
-CONFIG.Dout_Reset_Value{0} \
-CONFIG.Empty_Threshold_Assert_Value{4} \
-CONFIG.Empty_Threshold_Assert_Value_axis{2046} \
-CONFIG.Empty_Threshold_Assert_Value_rach{14} \
-CONFIG.Empty_Threshold_Assert_Value_rdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wach{14} \
-CONFIG.Empty_Threshold_Assert_Value_wdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wrch{14} \
-CONFIG.Empty_Threshold_Negate_Value{5} \
-CONFIG.Enable_Common_Overflow{false} \
-CONFIG.Enable_Common_Underflow{false} \
-CONFIG.Enable_Data_Counts_axis{true} \
-CONFIG.Enable_Data_Counts_rach{false} \
-CONFIG.Enable_Data_Counts_rdch{false} \
-CONFIG.Enable_Data_Counts_wach{false} \
-CONFIG.Enable_Data_Counts_wdch{false} \
-CONFIG.Enable_Data_Counts_wrch{false} \
-CONFIG.Enable_ECC{false} \
-CONFIG.Enable_ECC_axis{false} \
-CONFIG.Enable_ECC_rach{false} \
-CONFIG.Enable_ECC_rdch{false} \
-CONFIG.Enable_ECC_wach{false} \
-CONFIG.Enable_ECC_wdch{false} \
-CONFIG.Enable_ECC_wrch{false} \
-CONFIG.Enable_Reset_Synchronization{true} \
-CONFIG.Enable_TLAST{false} \
-CONFIG.Enable_TREADY{true} \
-CONFIG.FIFO_Application_Type_axis{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wrch{Data_FIFO} \
-CONFIG.FIFO_Implementation_axis{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rach{Common_Clock_Distributed_RAM} \
-CONFIG.FIFO_Implementation_rdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wach{Common_Clock_Distributed_RAM} \
-CONFIG.FIFO_Implementation_wdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wrch{Common_Clock_Distributed_RAM} \
-CONFIG.Fifo_Implementation{Common_Clock_Block_RAM} \
-CONFIG.Full_Flags_Reset_Value{1} \
-CONFIG.Full_Threshold_Assert_Value{2047} \
-CONFIG.Full_Threshold_Assert_Value_axis{2047} \
-CONFIG.Full_Threshold_Assert_Value_rach{15} \
-CONFIG.Full_Threshold_Assert_Value_rdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wach{15} \
-CONFIG.Full_Threshold_Assert_Value_wdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wrch{15} \
-CONFIG.Full_Threshold_Negate_Value{2046} \
-CONFIG.HAS_ACLKEN{false} \
-CONFIG.HAS_TKEEP{false} \
-CONFIG.HAS_TSTRB{false} \
-CONFIG.ID_WIDTH{0} \
-CONFIG.INTERFACE_TYPE{AXI_STREAM} \
-CONFIG.Inject_Dbit_Error{false} \
-CONFIG.Inject_Dbit_Error_axis{false} \
-CONFIG.Inject_Dbit_Error_rach{false} \
-CONFIG.Inject_Dbit_Error_rdch{false} \
-CONFIG.Inject_Dbit_Error_wach{false} \
-CONFIG.Inject_Dbit_Error_wdch{false} \
-CONFIG.Inject_Dbit_Error_wrch{false} \
-CONFIG.Inject_Sbit_Error{false} \
-CONFIG.Inject_Sbit_Error_axis{false} \
-CONFIG.Inject_Sbit_Error_rach{false} \
-CONFIG.Inject_Sbit_Error_rdch{false} \
-CONFIG.Inject_Sbit_Error_wach{false} \
-CONFIG.Inject_Sbit_Error_wdch{false} \
-CONFIG.Inject_Sbit_Error_wrch{false} \
-CONFIG.Input_Data_Width{32} \
-CONFIG.Input_Depth{2048} \
-CONFIG.Input_Depth_axis{2048} \
-CONFIG.Input_Depth_rach{16} \
-CONFIG.Input_Depth_rdch{1024} \
-CONFIG.Input_Depth_wach{16} \
-CONFIG.Input_Depth_wdch{1024} \
-CONFIG.Input_Depth_wrch{16} \
-CONFIG.Output_Data_Width{32} \
-CONFIG.Output_Depth{2048} \
-CONFIG.Overflow_Flag{false} \
-CONFIG.Overflow_Flag_AXI{false} \
-CONFIG.Overflow_Sense{Active_High} \
-CONFIG.Overflow_Sense_AXI{Active_High} \
-CONFIG.PROTOCOL{AXI4} \
-CONFIG.Performance_Options{First_Word_Fall_Through} \
-CONFIG.Programmable_Empty_Type{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_axis{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wrch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Full_Type{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_axis{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wrch{No_Programmable_Full_Threshold} \
-CONFIG.READ_WRITE_MODE{READ_WRITE} \
-CONFIG.RUSER_Width{0} \
-CONFIG.Read_Clock_Frequency{1} \
-CONFIG.Read_Data_Count{false} \
-CONFIG.Read_Data_Count_Width{12} \
-CONFIG.Register_Slice_Mode_axis{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wrch{Fully_Registered} \
-CONFIG.Reset_Pin{true} \
-CONFIG.Reset_Type{Asynchronous_Reset} \
-CONFIG.TDATA_NUM_BYTES{4} \
-CONFIG.TDEST_WIDTH{0} \
-CONFIG.TID_WIDTH{0} \
-CONFIG.TKEEP_WIDTH{4} \
-CONFIG.TSTRB_WIDTH{4} \
-CONFIG.TUSER_WIDTH{0} \
-CONFIG.Underflow_Flag{false} \
-CONFIG.Underflow_Flag_AXI{false} \
-CONFIG.Underflow_Sense{Active_High} \
-CONFIG.Underflow_Sense_AXI{Active_High} \
-CONFIG.Use_Dout_Reset{true} \
-CONFIG.Use_Embedded_Registers{false} \
-CONFIG.Use_Embedded_Registers_axis{false} \
-CONFIG.Use_Extra_Logic{true} \
-CONFIG.Valid_Flag{false} \
-CONFIG.Valid_Sense{Active_High} \
-CONFIG.WUSER_Width{0} \
-CONFIG.Write_Acknowledge_Flag{false} \
-CONFIG.Write_Acknowledge_Sense{Active_High} \
-CONFIG.Write_Clock_Frequency{1} \
-CONFIG.Write_Data_Count{false} \
-CONFIG.Write_Data_Count_Width{12} \
-CONFIG.axis_type{FIFO} \
-CONFIG.enable_read_pointer_increment_by2{false} \
-CONFIG.rach_type{FIFO} \
-CONFIG.rdch_type{FIFO} \
-CONFIG.synchronization_stages{2} \
-CONFIG.synchronization_stages_axi{2} \
-CONFIG.wach_type{FIFO} \
-CONFIG.wdch_type{FIFO} \
-CONFIG.wrch_type{FIFO} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.Fifo_Implementation {Independent_Clocks_Block_RAM} \
+	CONFIG.synchronization_stages {4} \
+	CONFIG.Performance_Options {First_Word_Fall_Through} \
+	CONFIG.Input_Data_Width {32} \
+	CONFIG.Input_Depth {2048} \
+	CONFIG.Output_Data_Width {64} \
+	CONFIG.Use_Embedded_Registers {true} \
+	CONFIG.Use_Extra_Logic {true} \
+	CONFIG.Output_Depth {1024} \
+	CONFIG.Reset_Type {Asynchronous_Reset} \
+	CONFIG.Full_Flags_Reset_Value {1} \
+	CONFIG.Data_Count_Width {11} \
+	CONFIG.Write_Data_Count_Width {12} \
+	CONFIG.Read_Data_Count_Width {11} \
+	CONFIG.Full_Threshold_Assert_Value {2047} \
+	CONFIG.Full_Threshold_Negate_Value {2046} \
+	CONFIG.Empty_Threshold_Assert_Value {4} \
+	CONFIG.Empty_Threshold_Negate_Value {5}] [get_ips asyn_fifo_32To64]
+generate_target {instantiation_template} [get_files asyn_fifo_32To64.xci]
 
-#set module_name {mig_axi_mm_dual}
-#create_ip -name mig_7series -vendor xilinx.com -library ip -module_name ${module_name}
-#set_property -dict [list \
-#CONFIG.Component_Name{mig_axi_mm_dual} \
-#CONFIG.MIG_DONT_TOUCH_PARAM{Custom} \
-#CONFIG.RESET_BOARD_INTERFACE{Custom} \
-#CONFIG.XML_INPUT_FILE{mig_a.prj} \
-#][get_ips ${module_name}]
-#generate_target {instantiation_template} [get_files ${module_name}.xci]
-#create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
-
-set module_name {asyn_fifo_45}
-create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name rx_fifo
 set_property -dict [list \
-CONFIG.ADDRESS_WIDTH{32} \
-CONFIG.ARUSER_Width{0} \
-CONFIG.AWUSER_Width{0} \
-CONFIG.Add_NGC_Constraint_AXI{false} \
-CONFIG.Almost_Empty_Flag{false} \
-CONFIG.Almost_Full_Flag{false} \
-CONFIG.BUSER_Width{0} \
-CONFIG.Clock_Enable_Type{Slave_Interface_Clock_Enable} \
-CONFIG.Clock_Type_AXI{Common_Clock} \
-CONFIG.Component_Name{asyn_fifo_45} \
-CONFIG.DATA_WIDTH{64} \
-CONFIG.Data_Count{false} \
-CONFIG.Data_Count_Width{10} \
-CONFIG.Disable_Timing_Violations{false} \
-CONFIG.Disable_Timing_Violations_AXI{false} \
-CONFIG.Dout_Reset_Value{0} \
-CONFIG.Empty_Threshold_Assert_Value{4} \
-CONFIG.Empty_Threshold_Assert_Value_axis{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wrch{1022} \
-CONFIG.Empty_Threshold_Negate_Value{5} \
-CONFIG.Enable_Common_Overflow{false} \
-CONFIG.Enable_Common_Underflow{false} \
-CONFIG.Enable_Data_Counts_axis{false} \
-CONFIG.Enable_Data_Counts_rach{false} \
-CONFIG.Enable_Data_Counts_rdch{false} \
-CONFIG.Enable_Data_Counts_wach{false} \
-CONFIG.Enable_Data_Counts_wdch{false} \
-CONFIG.Enable_Data_Counts_wrch{false} \
-CONFIG.Enable_ECC{false} \
-CONFIG.Enable_ECC_axis{false} \
-CONFIG.Enable_ECC_rach{false} \
-CONFIG.Enable_ECC_rdch{false} \
-CONFIG.Enable_ECC_wach{false} \
-CONFIG.Enable_ECC_wdch{false} \
-CONFIG.Enable_ECC_wrch{false} \
-CONFIG.Enable_Reset_Synchronization{true} \
-CONFIG.Enable_TLAST{false} \
-CONFIG.Enable_TREADY{true} \
-CONFIG.FIFO_Application_Type_axis{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wrch{Data_FIFO} \
-CONFIG.FIFO_Implementation_axis{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wrch{Common_Clock_Block_RAM} \
-CONFIG.Fifo_Implementation{Independent_Clocks_Block_RAM} \
-CONFIG.Full_Flags_Reset_Value{1} \
-CONFIG.Full_Threshold_Assert_Value{1023} \
-CONFIG.Full_Threshold_Assert_Value_axis{1023} \
-CONFIG.Full_Threshold_Assert_Value_rach{1023} \
-CONFIG.Full_Threshold_Assert_Value_rdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wach{1023} \
-CONFIG.Full_Threshold_Assert_Value_wdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wrch{1023} \
-CONFIG.Full_Threshold_Negate_Value{1022} \
-CONFIG.HAS_ACLKEN{false} \
-CONFIG.HAS_TKEEP{false} \
-CONFIG.HAS_TSTRB{false} \
-CONFIG.ID_WIDTH{0} \
-CONFIG.INTERFACE_TYPE{Native} \
-CONFIG.Inject_Dbit_Error{false} \
-CONFIG.Inject_Dbit_Error_axis{false} \
-CONFIG.Inject_Dbit_Error_rach{false} \
-CONFIG.Inject_Dbit_Error_rdch{false} \
-CONFIG.Inject_Dbit_Error_wach{false} \
-CONFIG.Inject_Dbit_Error_wdch{false} \
-CONFIG.Inject_Dbit_Error_wrch{false} \
-CONFIG.Inject_Sbit_Error{false} \
-CONFIG.Inject_Sbit_Error_axis{false} \
-CONFIG.Inject_Sbit_Error_rach{false} \
-CONFIG.Inject_Sbit_Error_rdch{false} \
-CONFIG.Inject_Sbit_Error_wach{false} \
-CONFIG.Inject_Sbit_Error_wdch{false} \
-CONFIG.Inject_Sbit_Error_wrch{false} \
-CONFIG.Input_Data_Width{45} \
-CONFIG.Input_Depth{1024} \
-CONFIG.Input_Depth_axis{1024} \
-CONFIG.Input_Depth_rach{16} \
-CONFIG.Input_Depth_rdch{1024} \
-CONFIG.Input_Depth_wach{16} \
-CONFIG.Input_Depth_wdch{1024} \
-CONFIG.Input_Depth_wrch{16} \
-CONFIG.Output_Data_Width{45} \
-CONFIG.Output_Depth{1024} \
-CONFIG.Overflow_Flag{false} \
-CONFIG.Overflow_Flag_AXI{false} \
-CONFIG.Overflow_Sense{Active_High} \
-CONFIG.Overflow_Sense_AXI{Active_High} \
-CONFIG.PROTOCOL{AXI4} \
-CONFIG.Performance_Options{First_Word_Fall_Through} \
-CONFIG.Programmable_Empty_Type{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_axis{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wrch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Full_Type{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_axis{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wrch{No_Programmable_Full_Threshold} \
-CONFIG.READ_WRITE_MODE{READ_WRITE} \
-CONFIG.RUSER_Width{0} \
-CONFIG.Read_Clock_Frequency{1} \
-CONFIG.Read_Data_Count{false} \
-CONFIG.Read_Data_Count_Width{11} \
-CONFIG.Register_Slice_Mode_axis{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wrch{Fully_Registered} \
-CONFIG.Reset_Pin{true} \
-CONFIG.Reset_Type{Asynchronous_Reset} \
-CONFIG.TDATA_NUM_BYTES{1} \
-CONFIG.TDEST_WIDTH{0} \
-CONFIG.TID_WIDTH{0} \
-CONFIG.TKEEP_WIDTH{1} \
-CONFIG.TSTRB_WIDTH{1} \
-CONFIG.TUSER_WIDTH{4} \
-CONFIG.Underflow_Flag{false} \
-CONFIG.Underflow_Flag_AXI{false} \
-CONFIG.Underflow_Sense{Active_High} \
-CONFIG.Underflow_Sense_AXI{Active_High} \
-CONFIG.Use_Dout_Reset{true} \
-CONFIG.Use_Embedded_Registers{true} \
-CONFIG.Use_Embedded_Registers_axis{false} \
-CONFIG.Use_Extra_Logic{true} \
-CONFIG.Valid_Flag{false} \
-CONFIG.Valid_Sense{Active_High} \
-CONFIG.WUSER_Width{0} \
-CONFIG.Write_Acknowledge_Flag{false} \
-CONFIG.Write_Acknowledge_Sense{Active_High} \
-CONFIG.Write_Clock_Frequency{1} \
-CONFIG.Write_Data_Count{false} \
-CONFIG.Write_Data_Count_Width{11} \
-CONFIG.axis_type{FIFO} \
-CONFIG.enable_read_pointer_increment_by2{false} \
-CONFIG.rach_type{FIFO} \
-CONFIG.rdch_type{FIFO} \
-CONFIG.synchronization_stages{4} \
-CONFIG.synchronization_stages_axi{2} \
-CONFIG.wach_type{FIFO} \
-CONFIG.wdch_type{FIFO} \
-CONFIG.wrch_type{FIFO} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.INTERFACE_TYPE {AXI_STREAM} \
+	CONFIG.TDATA_NUM_BYTES {8} \
+	CONFIG.TUSER_WIDTH {0} \
+	CONFIG.Enable_TLAST {true} \
+	CONFIG.HAS_TKEEP {true} \
+	CONFIG.Enable_Data_Counts_axis {true} \
+	CONFIG.Reset_Type {Asynchronous_Reset} \
+	CONFIG.Full_Flags_Reset_Value {1} \
+	CONFIG.TSTRB_WIDTH {8} \
+	CONFIG.TKEEP_WIDTH {8} \
+	CONFIG.FIFO_Implementation_wach {Common_Clock_Distributed_RAM} \
+	CONFIG.Full_Threshold_Assert_Value_wach {15} \
+	CONFIG.Empty_Threshold_Assert_Value_wach {14} \
+	CONFIG.FIFO_Implementation_wrch {Common_Clock_Distributed_RAM} \
+	CONFIG.Full_Threshold_Assert_Value_wrch {15} \
+	CONFIG.Empty_Threshold_Assert_Value_wrch {14} \
+	CONFIG.FIFO_Implementation_rach {Common_Clock_Distributed_RAM} \
+	CONFIG.Full_Threshold_Assert_Value_rach {15} \
+	CONFIG.Empty_Threshold_Assert_Value_rach {14}] [get_ips rx_fifo]
+generate_target {instantiation_template} [get_files rx_fifo.xci]
 
-set module_name {asyn_fifo_64To32}
-create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name singleSignalCDC
 set_property -dict [list \
-CONFIG.ADDRESS_WIDTH{32} \
-CONFIG.ARUSER_Width{0} \
-CONFIG.AWUSER_Width{0} \
-CONFIG.Add_NGC_Constraint_AXI{false} \
-CONFIG.Almost_Empty_Flag{false} \
-CONFIG.Almost_Full_Flag{false} \
-CONFIG.BUSER_Width{0} \
-CONFIG.Clock_Enable_Type{Slave_Interface_Clock_Enable} \
-CONFIG.Clock_Type_AXI{Common_Clock} \
-CONFIG.Component_Name{asyn_fifo_64To32} \
-CONFIG.DATA_WIDTH{64} \
-CONFIG.Data_Count{false} \
-CONFIG.Data_Count_Width{10} \
-CONFIG.Disable_Timing_Violations{false} \
-CONFIG.Disable_Timing_Violations_AXI{false} \
-CONFIG.Dout_Reset_Value{0} \
-CONFIG.Empty_Threshold_Assert_Value{4} \
-CONFIG.Empty_Threshold_Assert_Value_axis{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wrch{1022} \
-CONFIG.Empty_Threshold_Negate_Value{5} \
-CONFIG.Enable_Common_Overflow{false} \
-CONFIG.Enable_Common_Underflow{false} \
-CONFIG.Enable_Data_Counts_axis{false} \
-CONFIG.Enable_Data_Counts_rach{false} \
-CONFIG.Enable_Data_Counts_rdch{false} \
-CONFIG.Enable_Data_Counts_wach{false} \
-CONFIG.Enable_Data_Counts_wdch{false} \
-CONFIG.Enable_Data_Counts_wrch{false} \
-CONFIG.Enable_ECC{false} \
-CONFIG.Enable_ECC_axis{false} \
-CONFIG.Enable_ECC_rach{false} \
-CONFIG.Enable_ECC_rdch{false} \
-CONFIG.Enable_ECC_wach{false} \
-CONFIG.Enable_ECC_wdch{false} \
-CONFIG.Enable_ECC_wrch{false} \
-CONFIG.Enable_Reset_Synchronization{false} \
-CONFIG.Enable_TLAST{false} \
-CONFIG.Enable_TREADY{true} \
-CONFIG.FIFO_Application_Type_axis{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wrch{Data_FIFO} \
-CONFIG.FIFO_Implementation_axis{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wrch{Common_Clock_Block_RAM} \
-CONFIG.Fifo_Implementation{Independent_Clocks_Block_RAM} \
-CONFIG.Full_Flags_Reset_Value{1} \
-CONFIG.Full_Threshold_Assert_Value{1021} \
-CONFIG.Full_Threshold_Assert_Value_axis{1023} \
-CONFIG.Full_Threshold_Assert_Value_rach{1023} \
-CONFIG.Full_Threshold_Assert_Value_rdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wach{1023} \
-CONFIG.Full_Threshold_Assert_Value_wdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wrch{1023} \
-CONFIG.Full_Threshold_Negate_Value{1020} \
-CONFIG.HAS_ACLKEN{false} \
-CONFIG.HAS_TKEEP{false} \
-CONFIG.HAS_TSTRB{false} \
-CONFIG.ID_WIDTH{0} \
-CONFIG.INTERFACE_TYPE{Native} \
-CONFIG.Inject_Dbit_Error{false} \
-CONFIG.Inject_Dbit_Error_axis{false} \
-CONFIG.Inject_Dbit_Error_rach{false} \
-CONFIG.Inject_Dbit_Error_rdch{false} \
-CONFIG.Inject_Dbit_Error_wach{false} \
-CONFIG.Inject_Dbit_Error_wdch{false} \
-CONFIG.Inject_Dbit_Error_wrch{false} \
-CONFIG.Inject_Sbit_Error{false} \
-CONFIG.Inject_Sbit_Error_axis{false} \
-CONFIG.Inject_Sbit_Error_rach{false} \
-CONFIG.Inject_Sbit_Error_rdch{false} \
-CONFIG.Inject_Sbit_Error_wach{false} \
-CONFIG.Inject_Sbit_Error_wdch{false} \
-CONFIG.Inject_Sbit_Error_wrch{false} \
-CONFIG.Input_Data_Width{64} \
-CONFIG.Input_Depth{1024} \
-CONFIG.Input_Depth_axis{1024} \
-CONFIG.Input_Depth_rach{16} \
-CONFIG.Input_Depth_rdch{1024} \
-CONFIG.Input_Depth_wach{16} \
-CONFIG.Input_Depth_wdch{1024} \
-CONFIG.Input_Depth_wrch{16} \
-CONFIG.Output_Data_Width{32} \
-CONFIG.Output_Depth{2048} \
-CONFIG.Overflow_Flag{false} \
-CONFIG.Overflow_Flag_AXI{false} \
-CONFIG.Overflow_Sense{Active_High} \
-CONFIG.Overflow_Sense_AXI{Active_High} \
-CONFIG.PROTOCOL{AXI4} \
-CONFIG.Performance_Options{First_Word_Fall_Through} \
-CONFIG.Programmable_Empty_Type{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_axis{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wrch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Full_Type{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_axis{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wrch{No_Programmable_Full_Threshold} \
-CONFIG.READ_WRITE_MODE{READ_WRITE} \
-CONFIG.RUSER_Width{0} \
-CONFIG.Read_Clock_Frequency{1} \
-CONFIG.Read_Data_Count{false} \
-CONFIG.Read_Data_Count_Width{12} \
-CONFIG.Register_Slice_Mode_axis{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wrch{Fully_Registered} \
-CONFIG.Reset_Pin{true} \
-CONFIG.Reset_Type{Asynchronous_Reset} \
-CONFIG.TDATA_NUM_BYTES{1} \
-CONFIG.TDEST_WIDTH{0} \
-CONFIG.TID_WIDTH{0} \
-CONFIG.TKEEP_WIDTH{1} \
-CONFIG.TSTRB_WIDTH{1} \
-CONFIG.TUSER_WIDTH{4} \
-CONFIG.Underflow_Flag{false} \
-CONFIG.Underflow_Flag_AXI{false} \
-CONFIG.Underflow_Sense{Active_High} \
-CONFIG.Underflow_Sense_AXI{Active_High} \
-CONFIG.Use_Dout_Reset{true} \
-CONFIG.Use_Embedded_Registers{true} \
-CONFIG.Use_Embedded_Registers_axis{false} \
-CONFIG.Use_Extra_Logic{true} \
-CONFIG.Valid_Flag{false} \
-CONFIG.Valid_Sense{Active_High} \
-CONFIG.WUSER_Width{0} \
-CONFIG.Write_Acknowledge_Flag{false} \
-CONFIG.Write_Acknowledge_Sense{Active_High} \
-CONFIG.Write_Clock_Frequency{1} \
-CONFIG.Write_Data_Count{false} \
-CONFIG.Write_Data_Count_Width{11} \
-CONFIG.axis_type{FIFO} \
-CONFIG.enable_read_pointer_increment_by2{false} \
-CONFIG.rach_type{FIFO} \
-CONFIG.rdch_type{FIFO} \
-CONFIG.synchronization_stages{4} \
-CONFIG.synchronization_stages_axi{2} \
-CONFIG.wach_type{FIFO} \
-CONFIG.wdch_type{FIFO} \
-CONFIG.wrch_type{FIFO} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.Fifo_Implementation {Independent_Clocks_Distributed_RAM} \
+	CONFIG.Input_Data_Width {1} \
+	CONFIG.Input_Depth {16} \
+	CONFIG.Reset_Pin {false} \
+	CONFIG.Output_Data_Width {1} \
+	CONFIG.Output_Depth {16} \
+	CONFIG.Reset_Type {Asynchronous_Reset} \
+	CONFIG.Full_Flags_Reset_Value {0} \
+	CONFIG.Use_Dout_Reset {false} \
+	CONFIG.Data_Count_Width {4} \
+	CONFIG.Write_Data_Count_Width {4} \
+	CONFIG.Read_Data_Count_Width {4} \
+	CONFIG.Full_Threshold_Assert_Value {13} \
+	CONFIG.Full_Threshold_Negate_Value {12}] [get_ips singleSignalCDC]
+generate_target {instantiation_template} [get_files singleSignalCDC.xci]
 
-set module_name {FIS_OUT_FIFO}
-create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name memMgmt_async_fifo
 set_property -dict [list \
-CONFIG.ADDRESS_WIDTH{32} \
-CONFIG.ARUSER_Width{0} \
-CONFIG.AWUSER_Width{0} \
-CONFIG.Add_NGC_Constraint_AXI{false} \
-CONFIG.Almost_Empty_Flag{false} \
-CONFIG.Almost_Full_Flag{false} \
-CONFIG.BUSER_Width{0} \
-CONFIG.Clock_Enable_Type{Slave_Interface_Clock_Enable} \
-CONFIG.Clock_Type_AXI{Common_Clock} \
-CONFIG.Component_Name{FIS_OUT_FIFO} \
-CONFIG.DATA_WIDTH{64} \
-CONFIG.Data_Count{false} \
-CONFIG.Data_Count_Width{5} \
-CONFIG.Disable_Timing_Violations{false} \
-CONFIG.Disable_Timing_Violations_AXI{false} \
-CONFIG.Dout_Reset_Value{0} \
-CONFIG.Empty_Threshold_Assert_Value{4} \
-CONFIG.Empty_Threshold_Assert_Value_axis{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wrch{1022} \
-CONFIG.Empty_Threshold_Negate_Value{5} \
-CONFIG.Enable_Common_Overflow{false} \
-CONFIG.Enable_Common_Underflow{false} \
-CONFIG.Enable_Data_Counts_axis{false} \
-CONFIG.Enable_Data_Counts_rach{false} \
-CONFIG.Enable_Data_Counts_rdch{false} \
-CONFIG.Enable_Data_Counts_wach{false} \
-CONFIG.Enable_Data_Counts_wdch{false} \
-CONFIG.Enable_Data_Counts_wrch{false} \
-CONFIG.Enable_ECC{false} \
-CONFIG.Enable_ECC_axis{false} \
-CONFIG.Enable_ECC_rach{false} \
-CONFIG.Enable_ECC_rdch{false} \
-CONFIG.Enable_ECC_wach{false} \
-CONFIG.Enable_ECC_wdch{false} \
-CONFIG.Enable_ECC_wrch{false} \
-CONFIG.Enable_Reset_Synchronization{true} \
-CONFIG.Enable_TLAST{false} \
-CONFIG.Enable_TREADY{true} \
-CONFIG.FIFO_Application_Type_axis{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wrch{Data_FIFO} \
-CONFIG.FIFO_Implementation_axis{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wrch{Common_Clock_Block_RAM} \
-CONFIG.Fifo_Implementation{Common_Clock_Distributed_RAM} \
-CONFIG.Full_Flags_Reset_Value{1} \
-CONFIG.Full_Threshold_Assert_Value{13} \
-CONFIG.Full_Threshold_Assert_Value_axis{1023} \
-CONFIG.Full_Threshold_Assert_Value_rach{1023} \
-CONFIG.Full_Threshold_Assert_Value_rdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wach{1023} \
-CONFIG.Full_Threshold_Assert_Value_wdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wrch{1023} \
-CONFIG.Full_Threshold_Negate_Value{12} \
-CONFIG.HAS_ACLKEN{false} \
-CONFIG.HAS_TKEEP{false} \
-CONFIG.HAS_TSTRB{false} \
-CONFIG.ID_WIDTH{0} \
-CONFIG.INTERFACE_TYPE{Native} \
-CONFIG.Inject_Dbit_Error{false} \
-CONFIG.Inject_Dbit_Error_axis{false} \
-CONFIG.Inject_Dbit_Error_rach{false} \
-CONFIG.Inject_Dbit_Error_rdch{false} \
-CONFIG.Inject_Dbit_Error_wach{false} \
-CONFIG.Inject_Dbit_Error_wdch{false} \
-CONFIG.Inject_Dbit_Error_wrch{false} \
-CONFIG.Inject_Sbit_Error{false} \
-CONFIG.Inject_Sbit_Error_axis{false} \
-CONFIG.Inject_Sbit_Error_rach{false} \
-CONFIG.Inject_Sbit_Error_rdch{false} \
-CONFIG.Inject_Sbit_Error_wach{false} \
-CONFIG.Inject_Sbit_Error_wdch{false} \
-CONFIG.Inject_Sbit_Error_wrch{false} \
-CONFIG.Input_Data_Width{32} \
-CONFIG.Input_Depth{16} \
-CONFIG.Input_Depth_axis{1024} \
-CONFIG.Input_Depth_rach{16} \
-CONFIG.Input_Depth_rdch{1024} \
-CONFIG.Input_Depth_wach{16} \
-CONFIG.Input_Depth_wdch{1024} \
-CONFIG.Input_Depth_wrch{16} \
-CONFIG.Output_Data_Width{32} \
-CONFIG.Output_Depth{16} \
-CONFIG.Overflow_Flag{false} \
-CONFIG.Overflow_Flag_AXI{false} \
-CONFIG.Overflow_Sense{Active_High} \
-CONFIG.Overflow_Sense_AXI{Active_High} \
-CONFIG.PROTOCOL{AXI4} \
-CONFIG.Performance_Options{First_Word_Fall_Through} \
-CONFIG.Programmable_Empty_Type{Single_Programmable_Empty_Threshold_Constant} \
-CONFIG.Programmable_Empty_Type_axis{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wrch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Full_Type{Single_Programmable_Full_Threshold_Constant} \
-CONFIG.Programmable_Full_Type_axis{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wrch{No_Programmable_Full_Threshold} \
-CONFIG.READ_WRITE_MODE{READ_WRITE} \
-CONFIG.RUSER_Width{0} \
-CONFIG.Read_Clock_Frequency{1} \
-CONFIG.Read_Data_Count{false} \
-CONFIG.Read_Data_Count_Width{5} \
-CONFIG.Register_Slice_Mode_axis{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wrch{Fully_Registered} \
-CONFIG.Reset_Pin{true} \
-CONFIG.Reset_Type{Asynchronous_Reset} \
-CONFIG.TDATA_NUM_BYTES{1} \
-CONFIG.TDEST_WIDTH{0} \
-CONFIG.TID_WIDTH{0} \
-CONFIG.TKEEP_WIDTH{1} \
-CONFIG.TSTRB_WIDTH{1} \
-CONFIG.TUSER_WIDTH{4} \
-CONFIG.Underflow_Flag{false} \
-CONFIG.Underflow_Flag_AXI{false} \
-CONFIG.Underflow_Sense{Active_High} \
-CONFIG.Underflow_Sense_AXI{Active_High} \
-CONFIG.Use_Dout_Reset{true} \
-CONFIG.Use_Embedded_Registers{false} \
-CONFIG.Use_Embedded_Registers_axis{false} \
-CONFIG.Use_Extra_Logic{true} \
-CONFIG.Valid_Flag{false} \
-CONFIG.Valid_Sense{Active_High} \
-CONFIG.WUSER_Width{0} \
-CONFIG.Write_Acknowledge_Flag{false} \
-CONFIG.Write_Acknowledge_Sense{Active_High} \
-CONFIG.Write_Clock_Frequency{1} \
-CONFIG.Write_Data_Count{false} \
-CONFIG.Write_Data_Count_Width{5} \
-CONFIG.axis_type{FIFO} \
-CONFIG.enable_read_pointer_increment_by2{false} \
-CONFIG.rach_type{FIFO} \
-CONFIG.rdch_type{FIFO} \
-CONFIG.synchronization_stages{2} \
-CONFIG.synchronization_stages_axi{2} \
-CONFIG.wach_type{FIFO} \
-CONFIG.wdch_type{FIFO} \
-CONFIG.wrch_type{FIFO} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.Fifo_Implementation {Independent_Clocks_Block_RAM} \
+	CONFIG.Performance_Options {First_Word_Fall_Through} \
+	CONFIG.Input_Data_Width {32} \
+	CONFIG.Input_Depth {16} \
+	CONFIG.Output_Data_Width {32} \
+	CONFIG.Output_Depth {16} \
+	CONFIG.Reset_Type {Asynchronous_Reset} \
+	CONFIG.Full_Flags_Reset_Value {1} \
+	CONFIG.Data_Count_Width {4} \
+	CONFIG.Write_Data_Count_Width {4} \
+	CONFIG.Read_Data_Count_Width {4} \
+	CONFIG.Full_Threshold_Assert_Value {15} \
+	CONFIG.Full_Threshold_Negate_Value {14} \
+	CONFIG.Empty_Threshold_Assert_Value {4} \
+	CONFIG.Empty_Threshold_Negate_Value {5}] [get_ips memMgmt_async_fifo]
+generate_target {instantiation_template} [get_files memMgmt_async_fifo.xci]
 
-set module_name {rx_fifo}
-create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name ten_gig_eth_pcs_pma -vendor xilinx.com -library ip -module_name ten_gig_eth_pcs_pma_ip
 set_property -dict [list \
-CONFIG.ADDRESS_WIDTH{32} \
-CONFIG.ARUSER_Width{0} \
-CONFIG.AWUSER_Width{0} \
-CONFIG.Add_NGC_Constraint_AXI{false} \
-CONFIG.Almost_Empty_Flag{false} \
-CONFIG.Almost_Full_Flag{false} \
-CONFIG.BUSER_Width{0} \
-CONFIG.Clock_Enable_Type{Slave_Interface_Clock_Enable} \
-CONFIG.Clock_Type_AXI{Common_Clock} \
-CONFIG.Component_Name{rx_fifo} \
-CONFIG.DATA_WIDTH{64} \
-CONFIG.Data_Count{false} \
-CONFIG.Data_Count_Width{10} \
-CONFIG.Disable_Timing_Violations{false} \
-CONFIG.Disable_Timing_Violations_AXI{false} \
-CONFIG.Dout_Reset_Value{0} \
-CONFIG.Empty_Threshold_Assert_Value{2} \
-CONFIG.Empty_Threshold_Assert_Value_axis{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rach{14} \
-CONFIG.Empty_Threshold_Assert_Value_rdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wach{14} \
-CONFIG.Empty_Threshold_Assert_Value_wdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wrch{14} \
-CONFIG.Empty_Threshold_Negate_Value{3} \
-CONFIG.Enable_Common_Overflow{false} \
-CONFIG.Enable_Common_Underflow{false} \
-CONFIG.Enable_Data_Counts_axis{true} \
-CONFIG.Enable_Data_Counts_rach{false} \
-CONFIG.Enable_Data_Counts_rdch{false} \
-CONFIG.Enable_Data_Counts_wach{false} \
-CONFIG.Enable_Data_Counts_wdch{false} \
-CONFIG.Enable_Data_Counts_wrch{false} \
-CONFIG.Enable_ECC{false} \
-CONFIG.Enable_ECC_axis{false} \
-CONFIG.Enable_ECC_rach{false} \
-CONFIG.Enable_ECC_rdch{false} \
-CONFIG.Enable_ECC_wach{false} \
-CONFIG.Enable_ECC_wdch{false} \
-CONFIG.Enable_ECC_wrch{false} \
-CONFIG.Enable_Reset_Synchronization{true} \
-CONFIG.Enable_TLAST{true} \
-CONFIG.Enable_TREADY{true} \
-CONFIG.FIFO_Application_Type_axis{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wrch{Data_FIFO} \
-CONFIG.FIFO_Implementation_axis{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rach{Common_Clock_Distributed_RAM} \
-CONFIG.FIFO_Implementation_rdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wach{Common_Clock_Distributed_RAM} \
-CONFIG.FIFO_Implementation_wdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wrch{Common_Clock_Distributed_RAM} \
-CONFIG.Fifo_Implementation{Common_Clock_Block_RAM} \
-CONFIG.Full_Flags_Reset_Value{1} \
-CONFIG.Full_Threshold_Assert_Value{1022} \
-CONFIG.Full_Threshold_Assert_Value_axis{1023} \
-CONFIG.Full_Threshold_Assert_Value_rach{15} \
-CONFIG.Full_Threshold_Assert_Value_rdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wach{15} \
-CONFIG.Full_Threshold_Assert_Value_wdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wrch{15} \
-CONFIG.Full_Threshold_Negate_Value{1021} \
-CONFIG.HAS_ACLKEN{false} \
-CONFIG.HAS_TKEEP{true} \
-CONFIG.HAS_TSTRB{false} \
-CONFIG.ID_WIDTH{0} \
-CONFIG.INTERFACE_TYPE{AXI_STREAM} \
-CONFIG.Inject_Dbit_Error{false} \
-CONFIG.Inject_Dbit_Error_axis{false} \
-CONFIG.Inject_Dbit_Error_rach{false} \
-CONFIG.Inject_Dbit_Error_rdch{false} \
-CONFIG.Inject_Dbit_Error_wach{false} \
-CONFIG.Inject_Dbit_Error_wdch{false} \
-CONFIG.Inject_Dbit_Error_wrch{false} \
-CONFIG.Inject_Sbit_Error{false} \
-CONFIG.Inject_Sbit_Error_axis{false} \
-CONFIG.Inject_Sbit_Error_rach{false} \
-CONFIG.Inject_Sbit_Error_rdch{false} \
-CONFIG.Inject_Sbit_Error_wach{false} \
-CONFIG.Inject_Sbit_Error_wdch{false} \
-CONFIG.Inject_Sbit_Error_wrch{false} \
-CONFIG.Input_Data_Width{18} \
-CONFIG.Input_Depth{1024} \
-CONFIG.Input_Depth_axis{1024} \
-CONFIG.Input_Depth_rach{16} \
-CONFIG.Input_Depth_rdch{1024} \
-CONFIG.Input_Depth_wach{16} \
-CONFIG.Input_Depth_wdch{1024} \
-CONFIG.Input_Depth_wrch{16} \
-CONFIG.Output_Data_Width{18} \
-CONFIG.Output_Depth{1024} \
-CONFIG.Overflow_Flag{false} \
-CONFIG.Overflow_Flag_AXI{false} \
-CONFIG.Overflow_Sense{Active_High} \
-CONFIG.Overflow_Sense_AXI{Active_High} \
-CONFIG.PROTOCOL{AXI4} \
-CONFIG.Performance_Options{Standard_FIFO} \
-CONFIG.Programmable_Empty_Type{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_axis{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wrch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Full_Type{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_axis{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wrch{No_Programmable_Full_Threshold} \
-CONFIG.READ_WRITE_MODE{READ_WRITE} \
-CONFIG.RUSER_Width{0} \
-CONFIG.Read_Clock_Frequency{1} \
-CONFIG.Read_Data_Count{false} \
-CONFIG.Read_Data_Count_Width{10} \
-CONFIG.Register_Slice_Mode_axis{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wrch{Fully_Registered} \
-CONFIG.Reset_Pin{true} \
-CONFIG.Reset_Type{Asynchronous_Reset} \
-CONFIG.TDATA_NUM_BYTES{8} \
-CONFIG.TDEST_WIDTH{0} \
-CONFIG.TID_WIDTH{0} \
-CONFIG.TKEEP_WIDTH{8} \
-CONFIG.TSTRB_WIDTH{8} \
-CONFIG.TUSER_WIDTH{0} \
-CONFIG.Underflow_Flag{false} \
-CONFIG.Underflow_Flag_AXI{false} \
-CONFIG.Underflow_Sense{Active_High} \
-CONFIG.Underflow_Sense_AXI{Active_High} \
-CONFIG.Use_Dout_Reset{true} \
-CONFIG.Use_Embedded_Registers{false} \
-CONFIG.Use_Embedded_Registers_axis{false} \
-CONFIG.Use_Extra_Logic{false} \
-CONFIG.Valid_Flag{false} \
-CONFIG.Valid_Sense{Active_High} \
-CONFIG.WUSER_Width{0} \
-CONFIG.Write_Acknowledge_Flag{false} \
-CONFIG.Write_Acknowledge_Sense{Active_High} \
-CONFIG.Write_Clock_Frequency{1} \
-CONFIG.Write_Data_Count{false} \
-CONFIG.Write_Data_Count_Width{10} \
-CONFIG.axis_type{FIFO} \
-CONFIG.enable_read_pointer_increment_by2{false} \
-CONFIG.rach_type{FIFO} \
-CONFIG.rdch_type{FIFO} \
-CONFIG.synchronization_stages{2} \
-CONFIG.synchronization_stages_axi{2} \
-CONFIG.wach_type{FIFO} \
-CONFIG.wdch_type{FIFO} \
-CONFIG.wrch_type{FIFO} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.MDIO_Management {false} \
+	CONFIG.base_kr {BASE-R}] [get_ips ten_gig_eth_pcs_pma_ip]
+generate_target {instantiation_template} [get_files ten_gig_eth_pcs_pma_ip.xci]
 
-set module_name {axi_datamover_0}
-create_ip -name axi_datamover -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name ten_gig_eth_mac -vendor xilinx.com -library ip -module_name ten_gig_eth_mac_ip
 set_property -dict [list \
-CONFIG.Component_Name{axi_datamover_0} \
-CONFIG.c_enable_cache_user{false} \
-CONFIG.c_enable_mm2s{1} \
-CONFIG.c_enable_mm2s_adv_sig{0} \
-CONFIG.c_enable_s2mm{1} \
-CONFIG.c_enable_s2mm_adv_sig{0} \
-CONFIG.c_include_mm2s{Full} \
-CONFIG.c_include_mm2s_dre{true} \
-CONFIG.c_include_mm2s_stsfifo{true} \
-CONFIG.c_include_s2mm{Full} \
-CONFIG.c_include_s2mm_dre{true} \
-CONFIG.c_include_s2mm_stsfifo{true} \
-CONFIG.c_m_axi_mm2s_addr_width{32} \
-CONFIG.c_m_axi_mm2s_arid{0} \
-CONFIG.c_m_axi_mm2s_data_width{512} \
-CONFIG.c_m_axi_mm2s_id_width{4} \
-CONFIG.c_m_axi_s2mm_addr_width{32} \
-CONFIG.c_m_axi_s2mm_awid{0} \
-CONFIG.c_m_axi_s2mm_data_width{512} \
-CONFIG.c_m_axi_s2mm_id_width{4} \
-CONFIG.c_m_axis_mm2s_tdata_width{64} \
-CONFIG.c_mm2s_addr_pipe_depth{3} \
-CONFIG.c_mm2s_btt_used{23} \
-CONFIG.c_mm2s_burst_size{2} \
-CONFIG.c_mm2s_include_sf{true} \
-CONFIG.c_mm2s_stscmd_fifo_depth{4} \
-CONFIG.c_mm2s_stscmd_is_async{false} \
-CONFIG.c_s2mm_addr_pipe_depth{4} \
-CONFIG.c_s2mm_btt_used{23} \
-CONFIG.c_s2mm_burst_size{2} \
-CONFIG.c_s2mm_include_sf{false} \
-CONFIG.c_s2mm_stscmd_fifo_depth{4} \
-CONFIG.c_s2mm_stscmd_is_async{false} \
-CONFIG.c_s2mm_support_indet_btt{true} \
-CONFIG.c_s_axis_s2mm_tdata_width{64} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.Management_Interface {false} \
+	CONFIG.Statistics_Gathering {false}] [get_ips ten_gig_eth_mac_ip]
+generate_target {instantiation_template} [get_files ten_gig_eth_mac_ip.xci]
 
-set module_name {axi_datamover_1}
-create_ip -name axi_datamover -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name axis_register_slice -vendor xilinx.com -library ip -module_name axis_register_slice_64
 set_property -dict [list \
-CONFIG.Component_Name{axi_datamover_1} \
-CONFIG.c_enable_cache_user{false} \
-CONFIG.c_enable_mm2s{1} \
-CONFIG.c_enable_mm2s_adv_sig{0} \
-CONFIG.c_enable_s2mm{1} \
-CONFIG.c_enable_s2mm_adv_sig{0} \
-CONFIG.c_include_mm2s{Full} \
-CONFIG.c_include_mm2s_dre{false} \
-CONFIG.c_include_mm2s_stsfifo{true} \
-CONFIG.c_include_s2mm{Full} \
-CONFIG.c_include_s2mm_dre{false} \
-CONFIG.c_include_s2mm_stsfifo{true} \
-CONFIG.c_m_axi_mm2s_addr_width{32} \
-CONFIG.c_m_axi_mm2s_arid{0} \
-CONFIG.c_m_axi_mm2s_data_width{512} \
-CONFIG.c_m_axi_mm2s_id_width{4} \
-CONFIG.c_m_axi_s2mm_addr_width{32} \
-CONFIG.c_m_axi_s2mm_awid{0} \
-CONFIG.c_m_axi_s2mm_data_width{512} \
-CONFIG.c_m_axi_s2mm_id_width{4} \
-CONFIG.c_m_axis_mm2s_tdata_width{512} \
-CONFIG.c_mm2s_addr_pipe_depth{3} \
-CONFIG.c_mm2s_btt_used{23} \
-CONFIG.c_mm2s_burst_size{32} \
-CONFIG.c_mm2s_include_sf{true} \
-CONFIG.c_mm2s_stscmd_fifo_depth{4} \
-CONFIG.c_mm2s_stscmd_is_async{false} \
-CONFIG.c_s2mm_addr_pipe_depth{4} \
-CONFIG.c_s2mm_btt_used{23} \
-CONFIG.c_s2mm_burst_size{32} \
-CONFIG.c_s2mm_include_sf{true} \
-CONFIG.c_s2mm_stscmd_fifo_depth{4} \
-CONFIG.c_s2mm_stscmd_is_async{false} \
-CONFIG.c_s2mm_support_indet_btt{false} \
-CONFIG.c_s_axis_s2mm_tdata_width{512} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.TDATA_NUM_BYTES {8} \
+	CONFIG.HAS_TKEEP {1} \
+	CONFIG.HAS_TLAST {1}] [get_ips axis_register_slice_64]
+generate_target {instantiation_template} [get_files axis_register_slice_64.xci]
 
-set module_name {ten_gig_eth_mac_ip}
-create_ip -name ten_gig_eth_mac -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name axi_interconnect -vendor xilinx.com -library ip -module_name axi_interconnect_2s
 set_property -dict [list \
-CONFIG.Component_Name{ten_gig_eth_mac_ip} \
-CONFIG.IEEE_1588{None} \
-CONFIG.Management_Interface{false} \
-CONFIG.Physical_Interface{Internal} \
-CONFIG.Statistics_Gathering{false} \
-CONFIG.SupportLevel{0} \
-CONFIG.WAN_Support{false} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.INTERCONNECT_DATA_WIDTH {512} \
+	CONFIG.S00_AXI_DATA_WIDTH {512} \
+	CONFIG.S01_AXI_DATA_WIDTH {512} \
+	CONFIG.M00_AXI_DATA_WIDTH {512} \
+	CONFIG.S00_AXI_IS_ACLK_ASYNC {1} \
+	CONFIG.S01_AXI_IS_ACLK_ASYNC {1} \
+	CONFIG.M00_AXI_IS_ACLK_ASYNC {1} \
+	CONFIG.S00_AXI_READ_ACCEPTANCE {32} \
+	CONFIG.S01_AXI_READ_ACCEPTANCE {32} \
+	CONFIG.M00_AXI_READ_ISSUING {32} \
+	CONFIG.S00_AXI_WRITE_FIFO_DEPTH {512} \
+	CONFIG.S01_AXI_WRITE_FIFO_DEPTH {512} \
+	CONFIG.S00_AXI_READ_FIFO_DEPTH {512} \
+	CONFIG.S01_AXI_READ_FIFO_DEPTH {512} \
+	CONFIG.M00_AXI_WRITE_FIFO_DEPTH {512} \
+	CONFIG.M00_AXI_READ_FIFO_DEPTH {512} \
+	CONFIG.S00_AXI_REGISTER {1} \
+	CONFIG.S01_AXI_REGISTER {1} \
+	CONFIG.M00_AXI_REGISTER {1}] [get_ips axi_interconnect_2s]
+generate_target {instantiation_template} [get_files axi_interconnect_2s.xci]
 
-set module_name {axis_sync_fifo}
-create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name axi_datamover -vendor xilinx.com -library ip -module_name axi_datamover_1
 set_property -dict [list \
-CONFIG.ADDRESS_WIDTH{32} \
-CONFIG.ARUSER_Width{0} \
-CONFIG.AWUSER_Width{0} \
-CONFIG.Add_NGC_Constraint_AXI{false} \
-CONFIG.Almost_Empty_Flag{false} \
-CONFIG.Almost_Full_Flag{false} \
-CONFIG.BUSER_Width{0} \
-CONFIG.Clock_Enable_Type{Slave_Interface_Clock_Enable} \
-CONFIG.Clock_Type_AXI{Common_Clock} \
-CONFIG.Component_Name{axis_sync_fifo} \
-CONFIG.DATA_WIDTH{64} \
-CONFIG.Data_Count{false} \
-CONFIG.Data_Count_Width{10} \
-CONFIG.Disable_Timing_Violations{false} \
-CONFIG.Disable_Timing_Violations_AXI{false} \
-CONFIG.Dout_Reset_Value{0} \
-CONFIG.Empty_Threshold_Assert_Value{2} \
-CONFIG.Empty_Threshold_Assert_Value_axis{4094} \
-CONFIG.Empty_Threshold_Assert_Value_rach{14} \
-CONFIG.Empty_Threshold_Assert_Value_rdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wach{14} \
-CONFIG.Empty_Threshold_Assert_Value_wdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wrch{14} \
-CONFIG.Empty_Threshold_Negate_Value{3} \
-CONFIG.Enable_Common_Overflow{false} \
-CONFIG.Enable_Common_Underflow{false} \
-CONFIG.Enable_Data_Counts_axis{true} \
-CONFIG.Enable_Data_Counts_rach{false} \
-CONFIG.Enable_Data_Counts_rdch{false} \
-CONFIG.Enable_Data_Counts_wach{false} \
-CONFIG.Enable_Data_Counts_wdch{false} \
-CONFIG.Enable_Data_Counts_wrch{false} \
-CONFIG.Enable_ECC{false} \
-CONFIG.Enable_ECC_axis{false} \
-CONFIG.Enable_ECC_rach{false} \
-CONFIG.Enable_ECC_rdch{false} \
-CONFIG.Enable_ECC_wach{false} \
-CONFIG.Enable_ECC_wdch{false} \
-CONFIG.Enable_ECC_wrch{false} \
-CONFIG.Enable_Reset_Synchronization{true} \
-CONFIG.Enable_TLAST{true} \
-CONFIG.Enable_TREADY{true} \
-CONFIG.FIFO_Application_Type_axis{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wrch{Data_FIFO} \
-CONFIG.FIFO_Implementation_axis{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rach{Common_Clock_Distributed_RAM} \
-CONFIG.FIFO_Implementation_rdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wach{Common_Clock_Distributed_RAM} \
-CONFIG.FIFO_Implementation_wdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wrch{Common_Clock_Distributed_RAM} \
-CONFIG.Fifo_Implementation{Common_Clock_Block_RAM} \
-CONFIG.Full_Flags_Reset_Value{1} \
-CONFIG.Full_Threshold_Assert_Value{1022} \
-CONFIG.Full_Threshold_Assert_Value_axis{4095} \
-CONFIG.Full_Threshold_Assert_Value_rach{15} \
-CONFIG.Full_Threshold_Assert_Value_rdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wach{15} \
-CONFIG.Full_Threshold_Assert_Value_wdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wrch{15} \
-CONFIG.Full_Threshold_Negate_Value{1021} \
-CONFIG.HAS_ACLKEN{false} \
-CONFIG.HAS_TKEEP{true} \
-CONFIG.HAS_TSTRB{false} \
-CONFIG.ID_WIDTH{0} \
-CONFIG.INTERFACE_TYPE{AXI_STREAM} \
-CONFIG.Inject_Dbit_Error{false} \
-CONFIG.Inject_Dbit_Error_axis{false} \
-CONFIG.Inject_Dbit_Error_rach{false} \
-CONFIG.Inject_Dbit_Error_rdch{false} \
-CONFIG.Inject_Dbit_Error_wach{false} \
-CONFIG.Inject_Dbit_Error_wdch{false} \
-CONFIG.Inject_Dbit_Error_wrch{false} \
-CONFIG.Inject_Sbit_Error{false} \
-CONFIG.Inject_Sbit_Error_axis{false} \
-CONFIG.Inject_Sbit_Error_rach{false} \
-CONFIG.Inject_Sbit_Error_rdch{false} \
-CONFIG.Inject_Sbit_Error_wach{false} \
-CONFIG.Inject_Sbit_Error_wdch{false} \
-CONFIG.Inject_Sbit_Error_wrch{false} \
-CONFIG.Input_Data_Width{18} \
-CONFIG.Input_Depth{1024} \
-CONFIG.Input_Depth_axis{4096} \
-CONFIG.Input_Depth_rach{16} \
-CONFIG.Input_Depth_rdch{1024} \
-CONFIG.Input_Depth_wach{16} \
-CONFIG.Input_Depth_wdch{1024} \
-CONFIG.Input_Depth_wrch{16} \
-CONFIG.Output_Data_Width{18} \
-CONFIG.Output_Depth{1024} \
-CONFIG.Overflow_Flag{false} \
-CONFIG.Overflow_Flag_AXI{false} \
-CONFIG.Overflow_Sense{Active_High} \
-CONFIG.Overflow_Sense_AXI{Active_High} \
-CONFIG.PROTOCOL{AXI4} \
-CONFIG.Performance_Options{Standard_FIFO} \
-CONFIG.Programmable_Empty_Type{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_axis{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wrch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Full_Type{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_axis{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wrch{No_Programmable_Full_Threshold} \
-CONFIG.READ_WRITE_MODE{READ_WRITE} \
-CONFIG.RUSER_Width{0} \
-CONFIG.Read_Clock_Frequency{1} \
-CONFIG.Read_Data_Count{false} \
-CONFIG.Read_Data_Count_Width{10} \
-CONFIG.Register_Slice_Mode_axis{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wrch{Fully_Registered} \
-CONFIG.Reset_Pin{true} \
-CONFIG.Reset_Type{Asynchronous_Reset} \
-CONFIG.TDATA_NUM_BYTES{8} \
-CONFIG.TDEST_WIDTH{0} \
-CONFIG.TID_WIDTH{0} \
-CONFIG.TKEEP_WIDTH{8} \
-CONFIG.TSTRB_WIDTH{8} \
-CONFIG.TUSER_WIDTH{0} \
-CONFIG.Underflow_Flag{false} \
-CONFIG.Underflow_Flag_AXI{false} \
-CONFIG.Underflow_Sense{Active_High} \
-CONFIG.Underflow_Sense_AXI{Active_High} \
-CONFIG.Use_Dout_Reset{true} \
-CONFIG.Use_Embedded_Registers{false} \
-CONFIG.Use_Embedded_Registers_axis{false} \
-CONFIG.Use_Extra_Logic{false} \
-CONFIG.Valid_Flag{false} \
-CONFIG.Valid_Sense{Active_High} \
-CONFIG.WUSER_Width{0} \
-CONFIG.Write_Acknowledge_Flag{false} \
-CONFIG.Write_Acknowledge_Sense{Active_High} \
-CONFIG.Write_Clock_Frequency{1} \
-CONFIG.Write_Data_Count{false} \
-CONFIG.Write_Data_Count_Width{10} \
-CONFIG.axis_type{FIFO} \
-CONFIG.enable_read_pointer_increment_by2{false} \
-CONFIG.rach_type{FIFO} \
-CONFIG.rdch_type{FIFO} \
-CONFIG.synchronization_stages{2} \
-CONFIG.synchronization_stages_axi{2} \
-CONFIG.wach_type{FIFO} \
-CONFIG.wdch_type{FIFO} \
-CONFIG.wrch_type{FIFO} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.c_m_axi_mm2s_data_width {512} \
+	CONFIG.c_m_axis_mm2s_tdata_width {512} \
+	CONFIG.c_mm2s_burst_size {32} \
+	CONFIG.c_mm2s_btt_used {23} \
+	CONFIG.c_m_axi_s2mm_data_width {512} \
+	CONFIG.c_s_axis_s2mm_tdata_width {512} \
+	CONFIG.c_s2mm_burst_size {32} \
+	CONFIG.c_s2mm_btt_used {23}] [get_ips axi_datamover_1]
+generate_target {instantiation_template} [get_files axi_datamover_1.xci]
 
-set module_name {ten_gig_eth_pcs_pma_ip}
-create_ip -name ten_gig_eth_pcs_pma -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name axi_datamover -vendor xilinx.com -library ip -module_name axi_datamover_0
 set_property -dict [list \
-CONFIG.Component_Name{ten_gig_eth_pcs_pma_ip} \
-CONFIG.IEEE_1588{None} \
-CONFIG.MDIO_Management{false} \
-CONFIG.SupportLevel{0} \
-CONFIG.TransceiverControl{false} \
-CONFIG.autonegotiation{false} \
-CONFIG.base_kr{BASE-R} \
-CONFIG.fec{false} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.c_m_axi_mm2s_data_width {512} \
+	CONFIG.c_m_axis_mm2s_tdata_width {64} \
+	CONFIG.c_include_mm2s_dre {true} \
+	CONFIG.c_mm2s_burst_size {2} \
+	CONFIG.c_mm2s_btt_used {23} \
+	CONFIG.c_m_axi_s2mm_data_width {512} \
+	CONFIG.c_s_axis_s2mm_tdata_width {64} \
+	CONFIG.c_include_s2mm_dre {true} \
+	CONFIG.c_s2mm_burst_size {2} \
+	CONFIG.c_s2mm_btt_used {23} \
+	CONFIG.c_s2mm_support_indet_btt {true} \
+	CONFIG.c_s2mm_include_sf {false}] [get_ips axi_datamover_0]
+generate_target {instantiation_template} [get_files axi_datamover_0.xci]
 
-set module_name {pcie2axilite_sub_pcie_2_axilite_0_0}
-create_ip -name pcie_2_axilite -vendor xilinx.com -library ip -module_name ${module_name}
+#pcie sub modules
+create_ip -name pcie3_7x -vendor xilinx.com -library ip -module_name pcie2axilite_sub_pcie3_7x_0
 set_property -dict [list \
-CONFIG.AXIS_TDATA_WIDTH{64} \
-CONFIG.BAR0SIZE{0xFFFFFFFFFFFFF000} \
-CONFIG.BAR1SIZE{0xFFFFFFFFFFFFFF80} \
-CONFIG.BAR2AXI0_TRANSLATION{0x0000000000000000} \
-CONFIG.BAR2AXI1_TRANSLATION{0x00000000c2000000} \
-CONFIG.BAR2AXI2_TRANSLATION{0x0000000040000000} \
-CONFIG.BAR2AXI3_TRANSLATION{0x0000000030000000} \
-CONFIG.BAR2AXI4_TRANSLATION{0x0000000020000000} \
-CONFIG.BAR2AXI5_TRANSLATION{0x0000000010000000} \
-CONFIG.BAR2SIZE{0xFFFFFFFFFFFFFF80} \
-CONFIG.BAR3SIZE{0xFFFFFFFFFFFFFF80} \
-CONFIG.BAR4SIZE{0xFFFFFFFFFFFFFF80} \
-CONFIG.BAR5SIZE{0xFFFFFFFFFFFFFF80} \
-CONFIG.Component_Name{pcie2axilite_sub_pcie_2_axilite_0_0} \
-CONFIG.ENABLE_CONFIG{FALSE} \
-CONFIG.M_AXI_ADDR_WIDTH{32} \
-CONFIG.OUTSTANDING_READS{5} \
-CONFIG.RELAXED_ORDERING{FALSE} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.pcie_blk_locn {X0Y2} \
+	CONFIG.PF0_LINK_STATUS_SLOT_CLOCK_CONFIG {false} \
+	CONFIG.PL_LINK_CAP_MAX_LINK_WIDTH {X8} \
+	CONFIG.PL_LINK_CAP_MAX_LINK_SPEED {2.5_GT/s} \
+	CONFIG.AXISTEN_IF_RC_STRADDLE {false} \
+	CONFIG.pf0_base_class_menu {Simple_communication_controllers} \
+	CONFIG.pf0_class_code_base {05} \
+	CONFIG.pf0_class_code_sub {80} \
+	CONFIG.pf0_bar0_size {4} \
+	CONFIG.mode_selection {Advanced} \
+	CONFIG.en_ext_clk {false} \
+	CONFIG.shared_logic_in_core {true} \
+	CONFIG.cfg_fc_if {false} \
+	CONFIG.cfg_ext_if {false} \
+	CONFIG.cfg_status_if {false} \
+	CONFIG.per_func_status_if {false} \
+	CONFIG.cfg_mgmt_if {false} \
+	CONFIG.rcv_msg_if {false} \
+	CONFIG.cfg_tx_msg_if {false} \
+	CONFIG.cfg_ctl_if {false} \
+	CONFIG.tx_fc_if {false} \
+	CONFIG.gen_x0y1 {false} \
+	CONFIG.gen_x0y2 {true} \
+	CONFIG.tandem_mode {None} \
+	CONFIG.axisten_if_width {64_bit} \
+	CONFIG.PF0_DEVICE_ID {0007} \
+	CONFIG.pf0_sub_class_interface_menu {Generic_XT_compatible_serial_controller} \
+	CONFIG.PF0_CLASS_CODE {058000} \
+	CONFIG.PF1_DEVICE_ID {7011} \
+	CONFIG.pipe_mode_sim {None} \
+	CONFIG.axisten_freq {250} \
+	CONFIG.aspm_support {No_ASPM}] [get_ips pcie2axilite_sub_pcie3_7x_0]
+generate_target {instantiation_template} [get_files pcie2axilite_sub_pcie3_7x_0.xci]
 
-set module_name {asyn_fifo_32To64}
-create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name ${module_name}
+create_ip -name pcie_2_axilite -vendor xilinx.com -library user -version 1.0 -module_name pcie2axilite_sub_pcie_2_axilite_0
 set_property -dict [list \
-CONFIG.ADDRESS_WIDTH{32} \
-CONFIG.ARUSER_Width{0} \
-CONFIG.AWUSER_Width{0} \
-CONFIG.Add_NGC_Constraint_AXI{false} \
-CONFIG.Almost_Empty_Flag{false} \
-CONFIG.Almost_Full_Flag{false} \
-CONFIG.BUSER_Width{0} \
-CONFIG.Clock_Enable_Type{Slave_Interface_Clock_Enable} \
-CONFIG.Clock_Type_AXI{Common_Clock} \
-CONFIG.Component_Name{asyn_fifo_32To64} \
-CONFIG.DATA_WIDTH{64} \
-CONFIG.Data_Count{false} \
-CONFIG.Data_Count_Width{11} \
-CONFIG.Disable_Timing_Violations{false} \
-CONFIG.Disable_Timing_Violations_AXI{false} \
-CONFIG.Dout_Reset_Value{0} \
-CONFIG.Empty_Threshold_Assert_Value{4} \
-CONFIG.Empty_Threshold_Assert_Value_axis{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wrch{1022} \
-CONFIG.Empty_Threshold_Negate_Value{5} \
-CONFIG.Enable_Common_Overflow{false} \
-CONFIG.Enable_Common_Underflow{false} \
-CONFIG.Enable_Data_Counts_axis{false} \
-CONFIG.Enable_Data_Counts_rach{false} \
-CONFIG.Enable_Data_Counts_rdch{false} \
-CONFIG.Enable_Data_Counts_wach{false} \
-CONFIG.Enable_Data_Counts_wdch{false} \
-CONFIG.Enable_Data_Counts_wrch{false} \
-CONFIG.Enable_ECC{false} \
-CONFIG.Enable_ECC_axis{false} \
-CONFIG.Enable_ECC_rach{false} \
-CONFIG.Enable_ECC_rdch{false} \
-CONFIG.Enable_ECC_wach{false} \
-CONFIG.Enable_ECC_wdch{false} \
-CONFIG.Enable_ECC_wrch{false} \
-CONFIG.Enable_Reset_Synchronization{false} \
-CONFIG.Enable_TLAST{false} \
-CONFIG.Enable_TREADY{true} \
-CONFIG.FIFO_Application_Type_axis{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wrch{Data_FIFO} \
-CONFIG.FIFO_Implementation_axis{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wrch{Common_Clock_Block_RAM} \
-CONFIG.Fifo_Implementation{Independent_Clocks_Block_RAM} \
-CONFIG.Full_Flags_Reset_Value{1} \
-CONFIG.Full_Threshold_Assert_Value{2047} \
-CONFIG.Full_Threshold_Assert_Value_axis{1023} \
-CONFIG.Full_Threshold_Assert_Value_rach{1023} \
-CONFIG.Full_Threshold_Assert_Value_rdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wach{1023} \
-CONFIG.Full_Threshold_Assert_Value_wdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wrch{1023} \
-CONFIG.Full_Threshold_Negate_Value{2046} \
-CONFIG.HAS_ACLKEN{false} \
-CONFIG.HAS_TKEEP{false} \
-CONFIG.HAS_TSTRB{false} \
-CONFIG.ID_WIDTH{0} \
-CONFIG.INTERFACE_TYPE{Native} \
-CONFIG.Inject_Dbit_Error{false} \
-CONFIG.Inject_Dbit_Error_axis{false} \
-CONFIG.Inject_Dbit_Error_rach{false} \
-CONFIG.Inject_Dbit_Error_rdch{false} \
-CONFIG.Inject_Dbit_Error_wach{false} \
-CONFIG.Inject_Dbit_Error_wdch{false} \
-CONFIG.Inject_Dbit_Error_wrch{false} \
-CONFIG.Inject_Sbit_Error{false} \
-CONFIG.Inject_Sbit_Error_axis{false} \
-CONFIG.Inject_Sbit_Error_rach{false} \
-CONFIG.Inject_Sbit_Error_rdch{false} \
-CONFIG.Inject_Sbit_Error_wach{false} \
-CONFIG.Inject_Sbit_Error_wdch{false} \
-CONFIG.Inject_Sbit_Error_wrch{false} \
-CONFIG.Input_Data_Width{32} \
-CONFIG.Input_Depth{2048} \
-CONFIG.Input_Depth_axis{1024} \
-CONFIG.Input_Depth_rach{16} \
-CONFIG.Input_Depth_rdch{1024} \
-CONFIG.Input_Depth_wach{16} \
-CONFIG.Input_Depth_wdch{1024} \
-CONFIG.Input_Depth_wrch{16} \
-CONFIG.Output_Data_Width{64} \
-CONFIG.Output_Depth{1024} \
-CONFIG.Overflow_Flag{false} \
-CONFIG.Overflow_Flag_AXI{false} \
-CONFIG.Overflow_Sense{Active_High} \
-CONFIG.Overflow_Sense_AXI{Active_High} \
-CONFIG.PROTOCOL{AXI4} \
-CONFIG.Performance_Options{First_Word_Fall_Through} \
-CONFIG.Programmable_Empty_Type{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_axis{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wrch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Full_Type{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_axis{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wrch{No_Programmable_Full_Threshold} \
-CONFIG.READ_WRITE_MODE{READ_WRITE} \
-CONFIG.RUSER_Width{0} \
-CONFIG.Read_Clock_Frequency{1} \
-CONFIG.Read_Data_Count{false} \
-CONFIG.Read_Data_Count_Width{11} \
-CONFIG.Register_Slice_Mode_axis{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wrch{Fully_Registered} \
-CONFIG.Reset_Pin{true} \
-CONFIG.Reset_Type{Asynchronous_Reset} \
-CONFIG.TDATA_NUM_BYTES{1} \
-CONFIG.TDEST_WIDTH{0} \
-CONFIG.TID_WIDTH{0} \
-CONFIG.TKEEP_WIDTH{1} \
-CONFIG.TSTRB_WIDTH{1} \
-CONFIG.TUSER_WIDTH{4} \
-CONFIG.Underflow_Flag{false} \
-CONFIG.Underflow_Flag_AXI{false} \
-CONFIG.Underflow_Sense{Active_High} \
-CONFIG.Underflow_Sense_AXI{Active_High} \
-CONFIG.Use_Dout_Reset{true} \
-CONFIG.Use_Embedded_Registers{true} \
-CONFIG.Use_Embedded_Registers_axis{false} \
-CONFIG.Use_Extra_Logic{true} \
-CONFIG.Valid_Flag{false} \
-CONFIG.Valid_Sense{Active_High} \
-CONFIG.WUSER_Width{0} \
-CONFIG.Write_Acknowledge_Flag{false} \
-CONFIG.Write_Acknowledge_Sense{Active_High} \
-CONFIG.Write_Clock_Frequency{1} \
-CONFIG.Write_Data_Count{false} \
-CONFIG.Write_Data_Count_Width{12} \
-CONFIG.axis_type{FIFO} \
-CONFIG.enable_read_pointer_increment_by2{false} \
-CONFIG.rach_type{FIFO} \
-CONFIG.rdch_type{FIFO} \
-CONFIG.synchronization_stages{4} \
-CONFIG.synchronization_stages_axi{2} \
-CONFIG.wach_type{FIFO} \
-CONFIG.wdch_type{FIFO} \
-CONFIG.wrch_type{FIFO} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
-
-set module_name {cmd_fifo_xgemac_txif}
-create_ip -name fifo_generator -vendor xilinx.com -library ip -module_name ${module_name}
-set_property -dict [list \
-CONFIG.ADDRESS_WIDTH{32} \
-CONFIG.ARUSER_Width{0} \
-CONFIG.AWUSER_Width{0} \
-CONFIG.Add_NGC_Constraint_AXI{false} \
-CONFIG.Almost_Empty_Flag{false} \
-CONFIG.Almost_Full_Flag{false} \
-CONFIG.BUSER_Width{0} \
-CONFIG.Clock_Enable_Type{Slave_Interface_Clock_Enable} \
-CONFIG.Clock_Type_AXI{Common_Clock} \
-CONFIG.Component_Name{cmd_fifo_xgemac_txif} \
-CONFIG.DATA_WIDTH{64} \
-CONFIG.Data_Count{false} \
-CONFIG.Data_Count_Width{12} \
-CONFIG.Disable_Timing_Violations{false} \
-CONFIG.Disable_Timing_Violations_AXI{false} \
-CONFIG.Dout_Reset_Value{0} \
-CONFIG.Empty_Threshold_Assert_Value{2} \
-CONFIG.Empty_Threshold_Assert_Value_axis{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_rdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wach{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wdch{1022} \
-CONFIG.Empty_Threshold_Assert_Value_wrch{1022} \
-CONFIG.Empty_Threshold_Negate_Value{3} \
-CONFIG.Enable_Common_Overflow{false} \
-CONFIG.Enable_Common_Underflow{false} \
-CONFIG.Enable_Data_Counts_axis{false} \
-CONFIG.Enable_Data_Counts_rach{false} \
-CONFIG.Enable_Data_Counts_rdch{false} \
-CONFIG.Enable_Data_Counts_wach{false} \
-CONFIG.Enable_Data_Counts_wdch{false} \
-CONFIG.Enable_Data_Counts_wrch{false} \
-CONFIG.Enable_ECC{false} \
-CONFIG.Enable_ECC_axis{false} \
-CONFIG.Enable_ECC_rach{false} \
-CONFIG.Enable_ECC_rdch{false} \
-CONFIG.Enable_ECC_wach{false} \
-CONFIG.Enable_ECC_wdch{false} \
-CONFIG.Enable_ECC_wrch{false} \
-CONFIG.Enable_Reset_Synchronization{true} \
-CONFIG.Enable_TLAST{false} \
-CONFIG.Enable_TREADY{true} \
-CONFIG.FIFO_Application_Type_axis{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_rdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wach{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wdch{Data_FIFO} \
-CONFIG.FIFO_Application_Type_wrch{Data_FIFO} \
-CONFIG.FIFO_Implementation_axis{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_rdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wach{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wdch{Common_Clock_Block_RAM} \
-CONFIG.FIFO_Implementation_wrch{Common_Clock_Block_RAM} \
-CONFIG.Fifo_Implementation{Common_Clock_Block_RAM} \
-CONFIG.Full_Flags_Reset_Value{1} \
-CONFIG.Full_Threshold_Assert_Value{4094} \
-CONFIG.Full_Threshold_Assert_Value_axis{1023} \
-CONFIG.Full_Threshold_Assert_Value_rach{1023} \
-CONFIG.Full_Threshold_Assert_Value_rdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wach{1023} \
-CONFIG.Full_Threshold_Assert_Value_wdch{1023} \
-CONFIG.Full_Threshold_Assert_Value_wrch{1023} \
-CONFIG.Full_Threshold_Negate_Value{4093} \
-CONFIG.HAS_ACLKEN{false} \
-CONFIG.HAS_TKEEP{false} \
-CONFIG.HAS_TSTRB{false} \
-CONFIG.ID_WIDTH{0} \
-CONFIG.INTERFACE_TYPE{Native} \
-CONFIG.Inject_Dbit_Error{false} \
-CONFIG.Inject_Dbit_Error_axis{false} \
-CONFIG.Inject_Dbit_Error_rach{false} \
-CONFIG.Inject_Dbit_Error_rdch{false} \
-CONFIG.Inject_Dbit_Error_wach{false} \
-CONFIG.Inject_Dbit_Error_wdch{false} \
-CONFIG.Inject_Dbit_Error_wrch{false} \
-CONFIG.Inject_Sbit_Error{false} \
-CONFIG.Inject_Sbit_Error_axis{false} \
-CONFIG.Inject_Sbit_Error_rach{false} \
-CONFIG.Inject_Sbit_Error_rdch{false} \
-CONFIG.Inject_Sbit_Error_wach{false} \
-CONFIG.Inject_Sbit_Error_wdch{false} \
-CONFIG.Inject_Sbit_Error_wrch{false} \
-CONFIG.Input_Data_Width{1} \
-CONFIG.Input_Depth{4096} \
-CONFIG.Input_Depth_axis{1024} \
-CONFIG.Input_Depth_rach{16} \
-CONFIG.Input_Depth_rdch{1024} \
-CONFIG.Input_Depth_wach{16} \
-CONFIG.Input_Depth_wdch{1024} \
-CONFIG.Input_Depth_wrch{16} \
-CONFIG.Output_Data_Width{1} \
-CONFIG.Output_Depth{4096} \
-CONFIG.Overflow_Flag{false} \
-CONFIG.Overflow_Flag_AXI{false} \
-CONFIG.Overflow_Sense{Active_High} \
-CONFIG.Overflow_Sense_AXI{Active_High} \
-CONFIG.PROTOCOL{AXI4} \
-CONFIG.Performance_Options{Standard_FIFO} \
-CONFIG.Programmable_Empty_Type{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_axis{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_rdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wach{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wdch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Empty_Type_wrch{No_Programmable_Empty_Threshold} \
-CONFIG.Programmable_Full_Type{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_axis{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_rdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wach{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wdch{No_Programmable_Full_Threshold} \
-CONFIG.Programmable_Full_Type_wrch{No_Programmable_Full_Threshold} \
-CONFIG.READ_WRITE_MODE{READ_WRITE} \
-CONFIG.RUSER_Width{0} \
-CONFIG.Read_Clock_Frequency{1} \
-CONFIG.Read_Data_Count{false} \
-CONFIG.Read_Data_Count_Width{12} \
-CONFIG.Register_Slice_Mode_axis{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_rdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wach{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wdch{Fully_Registered} \
-CONFIG.Register_Slice_Mode_wrch{Fully_Registered} \
-CONFIG.Reset_Pin{true} \
-CONFIG.Reset_Type{Asynchronous_Reset} \
-CONFIG.TDATA_NUM_BYTES{0} \
-CONFIG.TDEST_WIDTH{0} \
-CONFIG.TID_WIDTH{0} \
-CONFIG.TKEEP_WIDTH{0} \
-CONFIG.TSTRB_WIDTH{0} \
-CONFIG.TUSER_WIDTH{4} \
-CONFIG.Underflow_Flag{false} \
-CONFIG.Underflow_Flag_AXI{false} \
-CONFIG.Underflow_Sense{Active_High} \
-CONFIG.Underflow_Sense_AXI{Active_High} \
-CONFIG.Use_Dout_Reset{true} \
-CONFIG.Use_Embedded_Registers{false} \
-CONFIG.Use_Embedded_Registers_axis{false} \
-CONFIG.Use_Extra_Logic{false} \
-CONFIG.Valid_Flag{false} \
-CONFIG.Valid_Sense{Active_High} \
-CONFIG.WUSER_Width{0} \
-CONFIG.Write_Acknowledge_Flag{false} \
-CONFIG.Write_Acknowledge_Sense{Active_High} \
-CONFIG.Write_Clock_Frequency{1} \
-CONFIG.Write_Data_Count{false} \
-CONFIG.Write_Data_Count_Width{12} \
-CONFIG.axis_type{FIFO} \
-CONFIG.enable_read_pointer_increment_by2{false} \
-CONFIG.rach_type{FIFO} \
-CONFIG.rdch_type{FIFO} \
-CONFIG.synchronization_stages{2} \
-CONFIG.synchronization_stages_axi{2} \
-CONFIG.wach_type{FIFO} \
-CONFIG.wdch_type{FIFO} \
-CONFIG.wrch_type{FIFO} \
-][get_ips ${module_name}]
-generate_target {instantiation_template} [get_files ${module_name}.xci]
-create_ip_run [get_files -of_objects [get_fileset sources_1] ${module_name}.xci]
+	CONFIG.BAR0SIZE {0xFFFFFFFFFFFFF000} \
+	CONFIG.BAR2AXI1_TRANSLATION {0x00000000c2000000} \
+	CONFIG.BAR2AXI0_TRANSLATION {0x0000000000000000} \
+	CONFIG.AXIS_TDATA_WIDTH {64} \
+	CONFIG.S_AXI_TDATA_WIDTH {32} \
+	CONFIG.M_AXI_TDATA_WIDTH {64}] [get_ips pcie2axilite_sub_pcie_2_axilite_0]
+generate_target {instantiation_template} [get_files pcie2axilite_sub_pcie_2_axilite_0.xci]

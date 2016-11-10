@@ -207,7 +207,7 @@ end
   
 cmd_fifo_xgemac_txif cmd_fifo_inst (
 .clk(user_clk), // input clk
-.rst(reset), // input rst
+.srst(reset), // input rst
 .din(cmd_fifo_din), // input [0 : 0] din
 .wr_en(cmd_fifo_wr_en), // input wr_en
 .rd_en(cmd_fifo_rd_en), // input rd_en

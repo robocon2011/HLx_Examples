@@ -99,9 +99,14 @@ module mcdDsBinPCIe_top(
    input                                        c1_sys_clk_p,
    input                                        c1_sys_clk_n,
    output [8:0] c0_ddr3_dm,
-   output [8:0] c1_ddr3_dm
+   output [8:0] c1_ddr3_dm,
+   output sfp_on, 
+   output [1:0] dram_on,
+   input    pok_dram
 );
 //manually tie off ddr3_dm
+    assign sfp_on = 1'b1;
+    assign dram_on = 2'b11;
     assign c0_ddr3_dm = 9'b0;
     assign c1_ddr3_dm = 9'b0;
     
@@ -618,6 +623,7 @@ mem_mcd_only_inf mem_inf_inst (
 // differential iodelayctrl clk (reference clock)
 .clk_ref_p(clk_ref_p),
 .clk_ref_n(clk_ref_n),
+.sys_rst(pcie_reset & pok_dram),
 //SODIMM 0
 // Inouts
 .c0_ddr3_dq(c0_ddr3_dq),

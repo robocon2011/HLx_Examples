@@ -13,20 +13,11 @@
 
 source "$1"
 
-BUILDDIR="$PWD/run"
+BUILDDIR="$PWD"
 
 echo "BUILDDIR is $BUILDDIR"
 
-if [ -d "$BUILDDIR" ]; then
-	eval cd "$BUILDDIR"
-	echo "$PWD"
-else
-	mkdir "$BUILDDIR"
-	eval cd "$BUILDDIR"
-	echo "$PWD"
-fi
-
-eval cp ./tcl/*.tcl ./
+#eval cp ../scripts/tcl/*.tcl ./
 
 eval vivado_hls -f run_hls.memcachedPipeline.tcl
 eval vivado_hls -f run_hls.readConverter.tcl
@@ -34,6 +25,6 @@ eval vivado_hls -f run_hls.writeConverter.tcl
 eval vivado_hls -f run_hls.ethInConverter.tcl
 eval vivado_hls -f run_hls.ethOutConverter.tcl
 eval vivado_hls -f run_hls.networkExtractor.tcl
-eval vivado_hls -f run_hls.networkComposer.tcl
+eval vivado_hls -f run_hls.networkCompose.tcl
 
 echo "Finished kvs HLS kernel synthesis"

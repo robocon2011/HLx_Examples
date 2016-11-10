@@ -35,6 +35,7 @@ input				c1_sys_clk_n,
 // differential iodelayctrl clk (reference clock)
 input				clk_ref_p,
 input				clk_ref_n,
+input               sys_rst,
 //SODIMM 0
 // Inouts
 inout [71:0]       c0_ddr3_dq,
@@ -344,7 +345,8 @@ always @(posedge c0_ui_clk)
 always @(posedge c1_ui_clk)
     c1_aresetn_r <= ~c1_ui_clk_sync_rst & c1_mmcm_locked;
 
-mig_axi_mm_dual u_mig_axi_mm_dual_inst (
+//mig_axi_mm_dual u_mig_axi_mm_dual_inst (
+mig_7series_0 u_mig_axi_mm_dual_inst (
     // Memory interface ports
        .c0_ddr3_addr                      (c0_ddr3_addr),
        .c0_ddr3_ba                        (c0_ddr3_ba),
@@ -551,7 +553,7 @@ mig_axi_mm_dual u_mig_axi_mm_dual_inst (
        .c1_sys_clk_p                       (c1_sys_clk_p),
        .c1_sys_clk_n                       (c1_sys_clk_n),
       
-       .sys_rst                        (1'b0)//(sys_rst) //system reset active high   
+       .sys_rst                        (sys_rst) //system reset active high   
     );
 
 //instantiate mcd_mem_inf

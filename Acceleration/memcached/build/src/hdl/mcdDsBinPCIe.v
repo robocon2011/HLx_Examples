@@ -426,7 +426,7 @@ pcie_mem_alloc #(.REVISION(32'h12000006)) pcie_mem_alloc_inst  (
 					
 //memcached Pipeline Instantiation
 //memcached_bin_flash_ip  myMemcachedPipeline (
-memcachedpipeline_top myMemcachedPipeline(//use the one from synplify
+memcachedPipeline myMemcachedPipeline(//use the one from synplify
                 .hashTableMemRdCmd_V_TVALID(ht_cmd_dramRdData_valid),
 				.hashTableMemRdCmd_V_TREADY(ht_cmd_dramRdData_ready),
 				.hashTableMemRdCmd_V_TDATA(ht_cmd_dramRdData_data),
@@ -439,12 +439,12 @@ memcachedpipeline_top myMemcachedPipeline(//use the one from synplify
 				.hashTableMemWrData_V_V_TVALID(ht_dramWrData_valid),
 				.hashTableMemWrData_V_V_TREADY(ht_dramWrData_ready),
 				.hashTableMemWrData_V_V_TDATA(ht_dramWrData_data),
-				.inData_V_TVALID(udp_in_valid),
-				.inData_V_TREADY(udp_in_ready),
-				.inData_V_TDATA(udp_in_data),
-				.outData_V_TVALID(udp_out_valid),
-				.outData_V_TREADY(udp_out_ready),
-				.outData_V_TDATA(udp_out_data),
+				.inData_TVALID(udp_in_valid),
+				.inData_TREADY(udp_in_ready),
+				.inData_TDATA(udp_in_data),
+				.outData_TVALID(udp_out_valid),
+				.outData_TREADY(udp_out_ready),
+				.outData_TDATA(udp_out_data),
 				.flashValueStoreMemRdCmd_V_TVALID(upd_cmd_flashRdData_valid),
 				.flashValueStoreMemRdCmd_V_TREADY(upd_cmd_flashRdData_ready),
 				.flashValueStoreMemRdCmd_V_TDATA(upd_cmd_flashRdData_data),
@@ -466,8 +466,8 @@ memcachedpipeline_top myMemcachedPipeline(//use the one from synplify
 				.addressAssignFlashIn_V_V_TDATA(memAllocation2memcached_flash_data),
 				.addressAssignFlashIn_V_V_TVALID(memAllocation2memcached_flash_valid),
 				.addressAssignFlashIn_V_V_TREADY(memAllocation2memcached_flash_ready),
-				.aresetn(aresetn),
-				.aclk(clk),
+				.ap_rst_n(aresetn),
+				.ap_clk(clk),
 				.dramValueStoreMemRdCmd_V_TVALID(dramValueStoreMemRdCmd_V_TVALID),
                 .dramValueStoreMemRdCmd_V_TDATA(dramValueStoreMemRdCmd_V_TDATA),
                 .dramValueStoreMemRdCmd_V_TREADY(dramValueStoreMemRdCmd_V_TREADY),

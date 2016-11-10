@@ -16,6 +16,9 @@ set_property IOSTANDARD LVCMOS18 [get_ports {sfp_tx_disable[0]}]
 set_property PACKAGE_PIN AA34 [get_ports {sfp_tx_disable[1]}]
 set_property IOSTANDARD LVCMOS18 [get_ports {sfp_tx_disable[1]}]
 
+set_property PACKAGE_PIN AA23 [get_ports sfp_on]
+set_property IOSTANDARD LVCMOS18 [get_ports sfp_on]
+
 create_clock -name clk156 -period 6.400 [get_pins n10g_interface_inst/xgbaser_gt_wrapper_inst/clk156_bufg_inst/O]
 create_clock -name dclk -period 12.800 [get_pins n10g_interface_inst/xgbaser_gt_wrapper_inst/dclk_bufg_inst/O]
 create_clock -name refclk -period 6.400 [get_pins n10g_interface_inst/xgphy_refclk_ibuf/O]
@@ -24,9 +27,9 @@ set_clock_groups -name async_xgemac_drpclk -asynchronous \
    -group [get_clocks -include_generated_clocks clk156] \
    -group [get_clocks -include_generated_clocks dclk]
    
-set_clock_groups -name async_ref_gmacTx -asynchronous \
-   -group [get_clocks clk156] \
-   -group [get_clocks n10g_interface_inst/network_inst_0/ten_gig_eth_pcs_pma_inst/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK]
+#set_clock_groups -name async_ref_gmacTx -asynchronous \
+#   -group [get_clocks clk156] \
+#   -group [get_clocks n10g_interface_inst/network_inst_0/ten_gig_eth_pcs_pma_inst/inst/gt0_gtwizard_10gbaser_multi_gt_i/gt0_gtwizard_gth_10gbaser_i/gthe2_i/TXOUTCLK]
 
 set_false_path -from [get_cells n10g_interface_inst/xgbaser_gt_wrapper_inst/reset_pulse_reg[0]]
 
@@ -34,13 +37,13 @@ set_clock_groups -name async_clk15_pll_i -asynchronous \
      -group [get_clocks clk_pll_i] \
      -group [get_clocks clk156]
      
-set_clock_groups -name async_clk156_pll_i_1 -asynchronous \
-     -group [get_clocks clk_pll_i_1] \
-     -group [get_clocks clk156]
+#set_clock_groups -name async_clk156_pll_i_1 -asynchronous \
+#     -group [get_clocks clk_pll_i_1] \
+#     -group [get_clocks clk156]
      
-set_clock_groups -name clk156_pll_i -asynchronous \
-    -group [get_clocks clk_pll_i] \
-    -group [get_clocks clk156]
+#set_clock_groups -name clk156_pll_i -asynchronous \
+#    -group [get_clocks clk_pll_i] \
+#    -group [get_clocks clk156]
     
 set_clock_groups -name clk156_pll_i_1 -asynchronous \
     -group [get_clocks clk_pll_i_1] \

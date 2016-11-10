@@ -32,6 +32,7 @@ This HLS example gives the pipelined memcached implementation. The main pipeline
 	 +--doc         : contains the memcached HLS deisgn document 
    +--hls         : memcached pipeline HLS implementation
    +--scripts     : contains a cshell scripts to creat all Vivado HLS project
+	 +--build				: contains all source and scripts used to create .bit files for the ADM-PCIE-7V3 card
    +--regressionSims: memcached RTL simulation related files
    |
    |-----+bpr     : backpressure data files used to generated back pressure signals in rtl simulation
@@ -64,6 +65,19 @@ This HLS example gives the pipelined memcached implementation. The main pipeline
 /usr/bin/python2.6 memtest_deploy.py env.server ../config/sim.allseqs.hls
 5. In the end, you should see TEST PASSED message
 
+* Steps for creating a memcached with DRAM and SSD as Value store and x86-based host side memory management for AMD-PCIE-7V3 card:
+
+1. navigate to build/ directory
+2. run "mkdir run" to create a folder to contain all temporary files and then navigate to build/run directory
+3. run "cp ../scripts/*.sh ./" to copy all shell scripts to current folder
+4. run "cp ../scripts/tcl/*.tcl ./" to copy all tcl scripts to current folder
+5. change the HLS_2015_1 variable in build_system.sh to point to the vivado_hls 2015.1
+6. change the vivado_2016_2 variable in build_system.sh to point to the vivado 2016.2
+7. run ./build_system.sh
+8. at the end of step 7, a vivadp project will be created and opened in the gui
+9. click "Generate Bitstream" to generate .bit file for FPGA
+
+
 ## 5. OTHER INFORMATION
 
 [Vivado HLS User Guide][]
@@ -86,6 +100,7 @@ This project is written by developers at [Xilinx](http://www.xilinx.com/) with o
 Date		|	Readme Version		|	Revision Description
 ------------|-----------------------|-------------------------
 JUNE2016		|	1.0					|	Initial Xilinx release
+NOV2016     | 1.1					| added scripts and source for creating memcached that uses DRAM and SSD as value store, x86-based host side memory managemen
 
 [Contributing]: CONTRIBUTING.md 
 [3-Clause BSD License]: LICENSE.md

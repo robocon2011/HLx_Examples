@@ -137,10 +137,10 @@ wire dramWrData_asyn_fifo_full,dramWrData_asyn_fifo_empty;
 wire dramWrData_asyn_fifo_wr_en, dramWrData_asyn_fifo_rd_en;
 
 asyn_fifo_64To32 dramWrData_asyn_fifo (
-  .wr_rst(~nReset156),        // input wire rst
+  .rst(~nReset156),        // input wire rst
   .wr_clk(clk156),  // input wire wr_clk
   .rd_clk(clk150),  // input wire rd_clk
-  .rd_rst(~nReset150),
+  //.rd_rst(~nReset150),
   .din(clk156_dramWrData_data),        // input wire [63 : 0] din
   .wr_en(dramWrData_asyn_fifo_wr_en),    // input wire wr_en
   .rd_en(dramWrData_asyn_fifo_rd_en),    // input wire rd_en
@@ -158,10 +158,10 @@ wire dramRdData_asyn_fifo_full, dramRdData_asyn_fifo_empty;
 wire dramRdData_asyn_fifo_wr_en, dramRdData_asyn_fifo_rd_en;
 
 asyn_fifo_32To64 dramRdData_asyn_fifo (
-  .wr_rst(~nReset150),        // input wire rst
+  .rst(~nReset150),        // input wire rst
   .wr_clk(clk150),  // input wire wr_clk
   .rd_clk(clk156),  // input wire rd_clk
-  .rd_rst(~nReset156),
+  //.rd_rst(~nReset156),
   .din(clk150_dramRdData_data),        // input wire [31 : 0] din
   .wr_en(dramRdData_asyn_fifo_wr_en),    // input wire wr_en
   .rd_en(dramRdData_asyn_fifo_rd_en),    // input wire rd_en
