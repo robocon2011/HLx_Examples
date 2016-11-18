@@ -163,38 +163,38 @@ input           vs_s_axis_write_tready
 
 //DRAM model connections
 wire[DRAM_WIDTH-1: 0]  ht_dramRdData_data;
-wire  ht_dramRdData_valid;
-wire  ht_dramRdData_ready;
+(*MARK_DEBUG="TRUE"*)wire  ht_dramRdData_valid;
+(*MARK_DEBUG="TRUE"*)wire  ht_dramRdData_ready;
 // ht_cmd_dramRdData: Push Output, 16b
 wire[DRAM_CMD_WIDTH-1:0]  ht_cmd_dramRdData_data;
-wire  ht_cmd_dramRdData_valid;
-wire  ht_cmd_dramRdData_ready;
+(*MARK_DEBUG="TRUE"*)wire  ht_cmd_dramRdData_valid;
+(*MARK_DEBUG="TRUE"*)wire  ht_cmd_dramRdData_ready;
 // ht_dramWrData:     Push Output, 512b
 wire[DRAM_WIDTH-1:0]  ht_dramWrData_data;
-wire  ht_dramWrData_valid;
-wire  ht_dramWrData_ready;
+(*MARK_DEBUG="TRUE"*)wire  ht_dramWrData_valid;
+(*MARK_DEBUG="TRUE"*)wire  ht_dramWrData_ready;
 // ht_cmd_dramWrData: Push Output, 16b
 wire[DRAM_CMD_WIDTH-1:0]  ht_cmd_dramWrData_data;
-wire  ht_cmd_dramWrData_valid;
-wire  ht_cmd_dramWrData_ready;
+(*MARK_DEBUG="TRUE"*)wire  ht_cmd_dramWrData_valid;
+(*MARK_DEBUG="TRUE"*)wire  ht_cmd_dramWrData_ready;
 
 // upd_cmd_dramRdData: Push Output, 16b
 wire[DRAM_CMD_WIDTH-1:0]  upd_cmd_dramRdData_data;
-wire  upd_cmd_dramRdData_valid;
-wire  upd_cmd_dramRdData_ready;
+(*MARK_DEBUG="TRUE"*)wire  upd_cmd_dramRdData_valid;
+(*MARK_DEBUG="TRUE"*)wire  upd_cmd_dramRdData_ready;
 // upd_cmd_dramWrData: Push Output, 16b
 wire[DRAM_CMD_WIDTH-1:0]  upd_cmd_dramWrData_data;
-wire  upd_cmd_dramWrData_valid;
-wire  upd_cmd_dramWrData_ready;
+(*MARK_DEBUG="TRUE"*)wire  upd_cmd_dramWrData_valid;
+(*MARK_DEBUG="TRUE"*)wire  upd_cmd_dramWrData_ready;
 // Update Flash Connection
 // upd_flashRdData:     Pull Input, 64b
 wire[FLASH_WIDTH-1:0]  upd_flashRdData_data;
-wire  upd_flashRdData_valid;
-wire  upd_flashRdData_ready;
+(*MARK_DEBUG="TRUE"*)wire  upd_flashRdData_valid;
+(*MARK_DEBUG="TRUE"*)wire  upd_flashRdData_ready;
 // upd_cmd_flashRdData: Push Output, 48b
 wire[FLASH_CMD_WIDTH-1:0]  upd_cmd_flashRdData_data;
-wire  upd_cmd_flashRdData_valid;
-wire  upd_cmd_flashRdData_ready;
+(*MARK_DEBUG="TRUE"*)wire  upd_cmd_flashRdData_valid;
+(*MARK_DEBUG="TRUE"*)wire  upd_cmd_flashRdData_ready;
 // upd_flashWrData:     Push Output, 64b
 wire[FLASH_WIDTH-1:0]  upd_flashWrData_data;
 wire  upd_flashWrData_valid;
@@ -221,11 +221,11 @@ wire dramValueStoreMemWrData_V_V_TREADY;
 
 //////////////////Memory Allocation Signals//////////////////////////////////////////-
 wire[31:0] memcached2memAllocation_data;	// Address reclamation
-wire memcached2memAllocation_valid;
-wire memcached2memAllocation_ready;
-wire[31:0] memAllocation2memcached_dram_data;	// Address assignment for DRAM
-wire memAllocation2memcached_dram_valid;
-wire memAllocation2memcached_dram_ready;
+(*MARK_DEBUG="TRUE"*)wire memcached2memAllocation_valid;
+(*MARK_DEBUG="TRUE"*)wire memcached2memAllocation_ready;
+(*MARK_DEBUG="TRUE"*)wire[31:0] memAllocation2memcached_dram_data;	// Address assignment for DRAM
+(*MARK_DEBUG="TRUE"*)wire memAllocation2memcached_dram_valid;
+(*MARK_DEBUG="TRUE"*)wire memAllocation2memcached_dram_ready;
 wire[31:0] memAllocation2memcached_flash_data;	// Address assignment for SSD
 wire memAllocation2memcached_flash_valid;
 wire memAllocation2memcached_flash_ready;
@@ -426,7 +426,7 @@ pcie_mem_alloc #(.REVISION(32'h12000006)) pcie_mem_alloc_inst  (
 					
 //memcached Pipeline Instantiation
 //memcached_bin_flash_ip  myMemcachedPipeline (
-memcachedPipeline myMemcachedPipeline(//use the one from synplify
+memcachedpipeline_top myMemcachedPipeline(//use the one from synplify
                 .hashTableMemRdCmd_V_TVALID(ht_cmd_dramRdData_valid),
 				.hashTableMemRdCmd_V_TREADY(ht_cmd_dramRdData_ready),
 				.hashTableMemRdCmd_V_TDATA(ht_cmd_dramRdData_data),
@@ -439,12 +439,12 @@ memcachedPipeline myMemcachedPipeline(//use the one from synplify
 				.hashTableMemWrData_V_V_TVALID(ht_dramWrData_valid),
 				.hashTableMemWrData_V_V_TREADY(ht_dramWrData_ready),
 				.hashTableMemWrData_V_V_TDATA(ht_dramWrData_data),
-				.inData_TVALID(udp_in_valid),
-				.inData_TREADY(udp_in_ready),
-				.inData_TDATA(udp_in_data),
-				.outData_TVALID(udp_out_valid),
-				.outData_TREADY(udp_out_ready),
-				.outData_TDATA(udp_out_data),
+				.inData_V_TVALID(udp_in_valid),
+				.inData_V_TREADY(udp_in_ready),
+				.inData_V_TDATA(udp_in_data),
+				.outData_V_TVALID(udp_out_valid),
+				.outData_V_TREADY(udp_out_ready),
+				.outData_V_TDATA(udp_out_data),
 				.flashValueStoreMemRdCmd_V_TVALID(upd_cmd_flashRdData_valid),
 				.flashValueStoreMemRdCmd_V_TREADY(upd_cmd_flashRdData_ready),
 				.flashValueStoreMemRdCmd_V_TDATA(upd_cmd_flashRdData_data),
@@ -466,8 +466,8 @@ memcachedPipeline myMemcachedPipeline(//use the one from synplify
 				.addressAssignFlashIn_V_V_TDATA(memAllocation2memcached_flash_data),
 				.addressAssignFlashIn_V_V_TVALID(memAllocation2memcached_flash_valid),
 				.addressAssignFlashIn_V_V_TREADY(memAllocation2memcached_flash_ready),
-				.ap_rst_n(aresetn),
-				.ap_clk(clk),
+				.aresetn(aresetn),
+				.aclk(clk),
 				.dramValueStoreMemRdCmd_V_TVALID(dramValueStoreMemRdCmd_V_TVALID),
                 .dramValueStoreMemRdCmd_V_TDATA(dramValueStoreMemRdCmd_V_TDATA),
                 .dramValueStoreMemRdCmd_V_TREADY(dramValueStoreMemRdCmd_V_TREADY),

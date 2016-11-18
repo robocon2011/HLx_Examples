@@ -29,11 +29,15 @@ This HLS example gives the pipelined memcached implementation. The main pipeline
    | 	LICENSE.md
    |    README.md
    |
-	 +--doc         : contains the memcached HLS deisgn document 
-   +--hls         : memcached pipeline HLS implementation
-   +--scripts     : contains a cshell scripts to creat all Vivado HLS project
-	 +--build				: contains all source and scripts used to create .bit files for the ADM-PCIE-7V3 card
-   +--regressionSims: memcached RTL simulation related files
+	 +--doc         										: contains the memcached HLS deisgn document 
+   +--hls         										: memcached pipeline HLS implementation
+   +--scripts     										: contains a cshell scripts to creat all Vivado HLS project
+	 +--buildUoeMcdSingleDramPCIe				: contains all source and scripts used to create .bit files for the ADM-PCIE-7V3 card
+	 |
+	 |----+src													: contains the latest tcp and udp offload HLS code same as in ../tcp_ip, and board specificfiles for build .bit file
+	 |----+scripts											: contains the .sh and .tcl script to create a UOE+MCD with one dram channel for value store and one dram channel for hash table and host-side memory allocation code
+	 |----+host_side_software					  : contains the host-side memory management code and udp-mcd test client. The UoeMcdSingleDramPCIe.pdf descrips the steps to compile and use these code to test the FPGA implementation. The UoeMcdSingleDramPCIePort1.tcc is a spirent configuration file used to test the FPGA implementation.	
+   +--regressionSims									: memcached RTL simulation related files
    |
    |-----+bpr     : backpressure data files used to generated back pressure signals in rtl simulation
    |-----+config  : configue file desicribes the input packets and golder reference packets
@@ -67,15 +71,13 @@ This HLS example gives the pipelined memcached implementation. The main pipeline
 
 * Steps for creating a memcached with DRAM and SSD as Value store and x86-based host side memory management for AMD-PCIE-7V3 card:
 
-1. navigate to build/ directory
-2. run "mkdir run" to create a folder to contain all temporary files and then navigate to build/run directory
-3. run "cp ../scripts/*.sh ./" to copy all shell scripts to current folder
-4. run "cp ../scripts/tcl/*.tcl ./" to copy all tcl scripts to current folder
-5. change the HLS_2015_1 variable in build_system.sh to point to the vivado_hls 2015.1
-6. change the vivado_2016_2 variable in build_system.sh to point to the vivado 2016.2
-7. run ./build_system.sh
-8. at the end of step 7, a vivadp project will be created and opened in the gui
-9. click "Generate Bitstream" to generate .bit file for FPGA
+1. navigate to buildUoeMcdSingleDramPCIe/scripts directory
+2. edit build_system.sh file to:
+			change the HLS_2015_1 variable in build_system.sh to point to the vivado_hls 2015.1
+			change the vivado_USED variable in build_system.sh to point to the vivado 2015.3 (note vivado 2016.2 does not work)
+3. run ./build_system.sh
+4. at the end of step 3, a UoeMcdSingleDramPCIe_top.bit file should be generated and stored under directory buildUoeMcdSingleDramPCIe/runTimeStamp/prj/prj.runs/impl_1
+5. follow section 3 "System Testing" in buildUoeMcdSingleDramPCIe/UoeMcdSingleDramPCIe.pdf to test the bit file.
 
 
 ## 5. OTHER INFORMATION
@@ -100,7 +102,7 @@ This project is written by developers at [Xilinx](http://www.xilinx.com/) with o
 Date		|	Readme Version		|	Revision Description
 ------------|-----------------------|-------------------------
 JUNE2016		|	1.0					|	Initial Xilinx release
-NOV2016     | 1.1					| added scripts and source for creating memcached that uses DRAM and SSD as value store, x86-based host side memory managemen
+NOV2016     | 1.1					| added scripts and source for creating memcached that uses DRAM and BRAM as value store, x86-based host side memory managemen
 
 [Contributing]: CONTRIBUTING.md 
 [3-Clause BSD License]: LICENSE.md

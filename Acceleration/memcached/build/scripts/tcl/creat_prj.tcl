@@ -60,4 +60,14 @@ set_property top mcdDsBinPCIe_top [current_fileset]
 source x86_ipCore_gen.tcl
 
 
-start_gui
+set_property strategy Flow_PerfOptimized_high [get_runs synth_1]
+#set_property STEPS.SYNTH_DESIGN.ARGS.FANOUT_LIMIT 300 [get_runs synth_1]
+set_property strategy Performance_ExplorePostRoutePhysOpt [get_runs impl_1]
+#set_property STEPS.PHYS_OPT_DESIGN.ARGS.DIRECTIVE AggressiveExplore [get_runs impl_1]
+#set_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.ARGS.DIRECTIVE AggressiveExplore [get_runs impl_1]
+launch_runs synth_1 -jobs 24
+wait_on_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 24
+wait_on_run impl_1
+close_project
+exit

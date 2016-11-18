@@ -43,3 +43,4 @@ set_property PACKAGE_PIN AA31 [get_ports pok_dram]
 set_property IOSTANDARD LVCMOS18 [get_ports pok_dram]
 
 set_false_path -from [get_ports pok_dram]
+

@@ -116,22 +116,23 @@ localparam FLASH_WIDTH = 64;
 localparam DRAM_CMD_WIDTH = 40;
 localparam FLASH_CMD_WIDTH	= 48;
     
- wire network_init, axi_clk, aresetn;
+ wire network_init, axi_clk;
+ (*MARK_DEBUG="TRUE"*) wire aresetn;
     
  /***********************************
  * 10G Network Interface Module
  ***********************************/
-wire        AXI_M_Stream_TVALID;
-wire        AXI_M_Stream_TREADY;
+(*MARK_DEBUG="TRUE"*)wire        AXI_M_Stream_TVALID;
+(*MARK_DEBUG="TRUE"*)wire        AXI_M_Stream_TREADY;
 wire[63:0]  AXI_M_Stream_TDATA;
 wire[7:0]   AXI_M_Stream_TKEEP;
-wire        AXI_M_Stream_TLAST;
+(*MARK_DEBUG="TRUE"*)wire        AXI_M_Stream_TLAST;
 
-wire        AXI_S_Stream_TVALID;
-wire        AXI_S_Stream_TREADY;
+(*MARK_DEBUG="TRUE"*)wire        AXI_S_Stream_TVALID;
+(*MARK_DEBUG="TRUE"*)wire        AXI_S_Stream_TREADY;
 wire[63:0]  AXI_S_Stream_TDATA;
 wire[7:0]   AXI_S_Stream_TKEEP;
-wire        AXI_S_Stream_TLAST;
+(*MARK_DEBUG="TRUE"*)wire        AXI_S_Stream_TLAST;
 //nic rx status info
 wire        nic_rx_fifo_overflow;
 wire [29:0]   nic_rx_statistics_vector;
@@ -178,23 +179,23 @@ eth10g_interface  n10g_interface_inst(
 
 
 wire[183:0]     axis_inStream_tdata;         
-wire            axis_inStream_tvalid;
-wire            axis_inStream_tready;
+(*MARK_DEBUG="TRUE"*)wire            axis_inStream_tvalid;
+(*MARK_DEBUG="TRUE"*)wire            axis_inStream_tready;
 
-wire[183:0]     axis_inExtractor_tdata;         
-wire            axis_inExtractor_tvalid;
-wire            axis_inExtractor_tready;
+(*MARK_DEBUG="TRUE"*)wire[183:0]     axis_inExtractor_tdata;         
+(*MARK_DEBUG="TRUE"*)wire            axis_inExtractor_tvalid;
+(*MARK_DEBUG="TRUE"*)wire            axis_inExtractor_tready;
 
 
 
 wire[183:0]     axis_outComposer_tdata;         
-wire            axis_outComposer_tvalid;
-wire            axis_outComposer_tready;
+(*MARK_DEBUG="TRUE"*)wire            axis_outComposer_tvalid;
+(*MARK_DEBUG="TRUE"*)wire            axis_outComposer_tready;
 
 
 wire[71:0]     axis_outStream_tdata;         
-wire            axis_outStream_tvalid;
-wire            axis_outStream_tready;
+(*MARK_DEBUG="TRUE"*)wire            axis_outStream_tvalid;
+(*MARK_DEBUG="TRUE"*)wire            axis_outStream_tready;
 
 ethinconverter_top ethInConverter_inst (
     .aclk(axi_clk),
@@ -226,40 +227,40 @@ wire stats0_tvalid;
 wire stats0_tready;
 wire [31:0] stats0;
 //stats 0 sits between network extractor and pipeline
-stats_module #(.data_size(184)) stats_module_i0( 
-.ACLK(axi_clk),
-.RESET(~aresetn),
+//stats_module #(.data_size(184)) stats_module_i0( 
+//.ACLK(axi_clk),
+//.RESET(~aresetn),
 
-.M_AXIS_TDATA(stats0_tdata), 
-.M_AXIS_TVALID(stats0_tvalid),
-.M_AXIS_TREADY(stats0_tready),
+//.M_AXIS_TDATA(stats0_tdata), 
+//.M_AXIS_TVALID(stats0_tvalid),
+//.M_AXIS_TREADY(stats0_tready),
 
-.S_AXIS_TDATA(axis_inExtractor_tdata),
-.S_AXIS_TVALID(axis_inExtractor_tvalid),
-.S_AXIS_TREADY(axis_inExtractor_tready),
+//.S_AXIS_TDATA(axis_inExtractor_tdata),
+//.S_AXIS_TVALID(axis_inExtractor_tvalid),
+//.S_AXIS_TREADY(axis_inExtractor_tready),
 
-.STATS_DATA(stats0)
-);    
+//.STATS_DATA(stats0)
+//);    
 
 wire [183:0] stats1_tdata;
 wire stats1_tvalid;
 wire stats1_tready;
 wire [31:0] stats1;
 //stats1 sits between pipeline and composer
-stats_module #(.data_size(184)) stats_module_i1( 
-.ACLK(axi_clk),
-.RESET(~aresetn),
+//stats_module #(.data_size(184)) stats_module_i1( 
+//.ACLK(axi_clk),
+//.RESET(~aresetn),
 
-.M_AXIS_TDATA(axis_outComposer_tdata), 
-.M_AXIS_TVALID(axis_outComposer_tvalid),
-.M_AXIS_TREADY(axis_outComposer_tready),
+//.M_AXIS_TDATA(axis_outComposer_tdata), 
+//.M_AXIS_TVALID(axis_outComposer_tvalid),
+//.M_AXIS_TREADY(axis_outComposer_tready),
 
-.S_AXIS_TDATA(stats1_tdata),
-.S_AXIS_TVALID(stats1_tvalid),
-.S_AXIS_TREADY(stats1_tready),
+//.S_AXIS_TDATA(stats1_tdata),
+//.S_AXIS_TVALID(stats1_tvalid),
+//.S_AXIS_TREADY(stats1_tready),
 
-.STATS_DATA(stats1)
-);
+//.STATS_DATA(stats1)
+//);
     
 networkcomposer_top networkComposer_inst (
         .inPacket_V_TVALID(axis_outComposer_tvalid),
@@ -274,73 +275,73 @@ networkcomposer_top networkComposer_inst (
 
 //signals between mcd and dram
 wire           c0_ui_clk;
-wire           c0_init_calib_complete;
+(*MARK_DEBUG="TRUE"*)wire           c0_init_calib_complete;
 wire           c1_ui_clk;
 wire           c1_init_calib_complete;
 
 //ht stream interface signals
-wire           ht_s_axis_read_cmd_tvalid;
-wire          ht_s_axis_read_cmd_tready;
+(*MARK_DEBUG="TRUE"*)wire           ht_s_axis_read_cmd_tvalid;
+(*MARK_DEBUG="TRUE"*)wire          ht_s_axis_read_cmd_tready;
 wire[71:0]     ht_s_axis_read_cmd_tdata;
 //read status
-wire          ht_m_axis_read_sts_tvalid;
-wire           ht_m_axis_read_sts_tready;
+(*MARK_DEBUG="TRUE"*)wire          ht_m_axis_read_sts_tvalid;
+(*MARK_DEBUG="TRUE"*)wire           ht_m_axis_read_sts_tready;
 wire[7:0]     ht_m_axis_read_sts_tdata;
 //read stream
 wire[511:0]    ht_m_axis_read_tdata;
 wire[63:0]     ht_m_axis_read_tkeep;
-wire          ht_m_axis_read_tlast;
-wire          ht_m_axis_read_tvalid;
-wire           ht_m_axis_read_tready;
+(*MARK_DEBUG="TRUE"*)wire          ht_m_axis_read_tlast;
+(*MARK_DEBUG="TRUE"*)wire          ht_m_axis_read_tvalid;
+(*MARK_DEBUG="TRUE"*)wire           ht_m_axis_read_tready;
 
 //write commands
-wire           ht_s_axis_write_cmd_tvalid;
-wire          ht_s_axis_write_cmd_tready;
+(*MARK_DEBUG="TRUE"*)wire           ht_s_axis_write_cmd_tvalid;
+(*MARK_DEBUG="TRUE"*)wire          ht_s_axis_write_cmd_tready;
 wire[71:0]     ht_s_axis_write_cmd_tdata;
 //write status
-wire          ht_m_axis_write_sts_tvalid;
-wire           ht_m_axis_write_sts_tready;
+(*MARK_DEBUG="TRUE"*)wire          ht_m_axis_write_sts_tvalid;
+(*MARK_DEBUG="TRUE"*)wire           ht_m_axis_write_sts_tready;
 wire[7:0]     ht_m_axis_write_sts_tdata;
 //write stream
 wire[511:0]     ht_s_axis_write_tdata;
 wire[63:0]      ht_s_axis_write_tkeep;
-wire           ht_s_axis_write_tlast;
-wire           ht_s_axis_write_tvalid;
-wire          ht_s_axis_write_tready;
+(*MARK_DEBUG="TRUE"*)wire           ht_s_axis_write_tlast;
+(*MARK_DEBUG="TRUE"*)wire           ht_s_axis_write_tvalid;
+(*MARK_DEBUG="TRUE"*)wire          ht_s_axis_write_tready;
 
 //upd stream interface signals
-wire           vs_s_axis_read_cmd_tvalid;
-wire          vs_s_axis_read_cmd_tready;
+(*MARK_DEBUG="TRUE"*)wire           vs_s_axis_read_cmd_tvalid;
+(*MARK_DEBUG="TRUE"*)wire          vs_s_axis_read_cmd_tready;
 wire[71:0]     vs_s_axis_read_cmd_tdata;
 //read status
-wire          vs_m_axis_read_sts_tvalid;
-wire           vs_m_axis_read_sts_tready;
+(*MARK_DEBUG="TRUE"*)wire          vs_m_axis_read_sts_tvalid;
+(*MARK_DEBUG="TRUE"*)wire           vs_m_axis_read_sts_tready;
 wire[7:0]     vs_m_axis_read_sts_tdata;
 //read stream
 wire[511:0]    vs_m_axis_read_tdata;
 wire[63:0]     vs_m_axis_read_tkeep;
-wire          vs_m_axis_read_tlast;
-wire          vs_m_axis_read_tvalid;
-wire           vs_m_axis_read_tready;
+(*MARK_DEBUG="TRUE"*)wire          vs_m_axis_read_tlast;
+(*MARK_DEBUG="TRUE"*)wire          vs_m_axis_read_tvalid;
+(*MARK_DEBUG="TRUE"*)wire           vs_m_axis_read_tready;
 
 //write commands
-wire           vs_s_axis_write_cmd_tvalid;
-wire          vs_s_axis_write_cmd_tready;
+(*MARK_DEBUG="TRUE"*)wire           vs_s_axis_write_cmd_tvalid;
+(*MARK_DEBUG="TRUE"*)wire          vs_s_axis_write_cmd_tready;
 wire[71:0]     vs_s_axis_write_cmd_tdata;
 //write status
-wire          vs_m_axis_write_sts_tvalid;
-wire           vs_m_axis_write_sts_tready;
+(*MARK_DEBUG="TRUE"*)wire          vs_m_axis_write_sts_tvalid;
+(*MARK_DEBUG="TRUE"*)wire           vs_m_axis_write_sts_tready;
 wire[7:0]     vs_m_axis_write_sts_tdata;
 //write stream
 wire[511:0]     vs_s_axis_write_tdata;
 wire[63:0]      vs_s_axis_write_tkeep;
-wire            vs_s_axis_write_tlast;
-wire            vs_s_axis_write_tvalid;
-wire           vs_s_axis_write_tready;
+(*MARK_DEBUG="TRUE"*)wire            vs_s_axis_write_tlast;
+(*MARK_DEBUG="TRUE"*)wire            vs_s_axis_write_tvalid;
+(*MARK_DEBUG="TRUE"*)wire           vs_s_axis_write_tready;
 
 //pcie related signals
 wire pcie_clk;
-wire pcie_user_lnk_up;
+(*MARK_DEBUG="TRUE"*)wire pcie_user_lnk_up;
   
 wire [31: 0] pcie_axi_AWADDR;
 wire pcie_axi_AWVALID;
@@ -395,7 +396,7 @@ wire link_initialized_clk156;
 wire ncq_idle_clk156;
 wire fin_read_sig_clk156;
 
-reg c1_init_calib_complete_r;
+(*MARK_DEBUG="TRUE"*) reg c1_init_calib_complete_r;
 
 always @(posedge axi_clk)
     c1_init_calib_complete_r <= c1_init_calib_complete;
@@ -408,15 +409,15 @@ mcdDsBinPCIe #(
 ) memcached_inst(
     .clk(axi_clk),
     .aresetn(aresetn & c1_init_calib_complete_r),
-    .udp_in_data(stats0_tdata),//(axis_inExtractor_tdata),
-    .udp_in_ready(stats0_tready),//(axis_inExtractor_tready),
-    .udp_in_valid(stats0_tvalid), //(axis_inExtractor_tvalid),
+    .udp_in_data(axis_inExtractor_tdata), //(stats0_tdata),//(axis_inExtractor_tdata),
+    .udp_in_ready(axis_inExtractor_tready),//(stats0_tready),//(axis_inExtractor_tready),
+    .udp_in_valid(axis_inExtractor_tvalid),//(stats0_tvalid), //(axis_inExtractor_tvalid),
     
-    .udp_out_data(stats1_tdata), //(axis_outComposer_tdata),
-    .udp_out_ready(stats1_tready), //(axis_outComposer_tready),
-    .udp_out_valid(stats1_tvalid), //(axis_outComposer_tvalid),
-    .stats0(stats0),
-    .stats1(stats1),
+    .udp_out_data(axis_outComposer_tdata),//(stats1_tdata), //(axis_outComposer_tdata),
+    .udp_out_ready(axis_outComposer_tready),//(stats1_tready), //(axis_outComposer_tready),
+    .udp_out_valid(axis_outComposer_tvalid),//(stats1_tvalid), //(axis_outComposer_tvalid),
+    .stats0(0),//(stats0),
+    .stats1(0),//(stats1),
     //pcie interface
     .pcie_axi_AWADDR(pcie_axi_AWADDR),
     .pcie_axi_AWVALID(pcie_axi_AWVALID),
