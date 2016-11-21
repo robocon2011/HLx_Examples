@@ -74,7 +74,7 @@ This HLS example gives the pipelined memcached implementation. The main pipeline
 1. navigate to buildUoeMcdSingleDramPCIe/scripts directory
 2. edit build_system.sh file to:
 			change the HLS_2015_1 variable in build_system.sh to point to the vivado_hls 2015.1
-			change the vivado_USED variable in build_system.sh to point to the vivado 2015.3 (note vivado 2016.2 does not work)
+			change the vivado_USED variable in build_system.sh to point to the vivado vivado 2016.2
 3. run ./build_system.sh
 4. at the end of step 3, a UoeMcdSingleDramPCIe_top.bit file should be generated and stored under directory buildUoeMcdSingleDramPCIe/runTimeStamp/prj/prj.runs/impl_1
 5. follow section 3 "System Testing" in buildUoeMcdSingleDramPCIe/UoeMcdSingleDramPCIe.pdf to test the bit file.
