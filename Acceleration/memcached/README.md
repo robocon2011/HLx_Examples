@@ -69,7 +69,7 @@ This HLS example gives the pipelined memcached implementation. The main pipeline
 /usr/bin/python2.6 memtest_deploy.py env.server ../config/sim.allseqs.hls
 5. In the end, you should see TEST PASSED message
 
-* Steps for creating a memcached with DRAM and SSD as Value store and x86-based host side memory management for AMD-PCIE-7V3 card:
+* Steps for creating a memcached with DRAM and SSD as Value store and x86-based host side memory management for ADM-PCIE-7V3 card:
 
 1. navigate to buildUoeMcdSingleDramPCIe/scripts directory
 2. edit build_system.sh file to:
