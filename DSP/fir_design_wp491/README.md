@@ -83,7 +83,7 @@ The Library is written by developers at [Xilinx](http://www.xilinx.com/) with ot
 
 Date		|	Readme Version		|	Revision Description
 ------------|-----------------------|-------------------------
-MARJAN2017	|	1.0					|	Initial Xilinx release
+31MAR2017	|	1.0					|	Initial Xilinx release
 
 
 
